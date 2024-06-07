@@ -1,4 +1,4 @@
-package org.shakers.fullcomunication;
+package org.shakers.fullcomunication.ui;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import org.shakers.fullcomunication.R;
 
 public class MainActivity extends AppCompatActivity {
 
