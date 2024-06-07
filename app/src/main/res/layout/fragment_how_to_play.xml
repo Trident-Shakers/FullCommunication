@@ -5,10 +5,42 @@
     android:layout_height="match_parent"
     tools:context=".ui.HowToPlayFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5">
+
+        <Button
+            android:id="@+id/buttonBack"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="＜"
+            android:textSize="45dp"
+            app:backgroundTint="@null"
+
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background=""
+            android:text=""
+            android:textSize="40sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="13dp"
+            android:gravity="center_horizontal"/>
+
+    </LinearLayout>
+    <androidx.fragment.app.FragmentContainerView
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="250dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/tipsZone"
+
+        />
 
 </FrameLayout>
