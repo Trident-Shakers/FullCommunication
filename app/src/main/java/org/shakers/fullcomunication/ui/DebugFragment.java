@@ -28,7 +28,7 @@ public class DebugFragment extends Fragment {
 
         Button titleButton = view.findViewById(R.id.button_title);
         Button genreChoiceButton = view.findViewById(R.id.button_genre_choice);
-        Button howToPlayButton = view.findViewById(R.id.button_how_to_play);
+        Button howToPlayButton = view.findViewById(R.id.button_how_to_play_debug);
         Button topicOfferingButton = view.findViewById(R.id.button_topic_offering);
 //        Button resultButton = view.findViewById(R.id.button_result);
 

@@ -10,13 +10,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/start_button"
+        android:id="@+id/button_start"
         android:text="はじめる" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/how_to_play_button"
+        android:id="@+id/button_how_to_play"
         android:text="遊び方" />
 
 </LinearLayout>

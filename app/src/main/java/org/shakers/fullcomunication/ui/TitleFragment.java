@@ -63,7 +63,7 @@ public class TitleFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_title, container, false);
         //Fragmentの場合
-        Button startButton = view.findViewById(R.id.start_button);
+        Button startButton = view.findViewById(R.id.button_start);
         startButton.setOnClickListener(v -> {
             Log.d("TitleFragment", "onClick: startButton");
 
