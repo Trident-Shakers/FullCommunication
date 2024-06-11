@@ -19,7 +19,7 @@
         android:text="ジャンル選択" />
 
     <Button
-        android:id="@+id/button_how_to_play"
+        android:id="@+id/button_how_to_play_debug"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="遊び方説明" />
