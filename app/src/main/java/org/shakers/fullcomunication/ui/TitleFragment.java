@@ -72,6 +72,7 @@ public class TitleFragment extends Fragment {
                     .replace(R.id.nav_host_fragment, new GenreChoiceFragment())
                     .commit();
 
+            Button hwubutton = view.findViewById(R.id.button_how_to_play);
         });
 
         return view;
