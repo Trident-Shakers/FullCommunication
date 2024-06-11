@@ -7,10 +7,11 @@
     tools:context=".ui.TopicFragment"
     android:background="#FFFFFF">
     <TextView
+        android:id="@+id/topic_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="現在の話題は…"
-        android:textSize="35dp"
+        android:textSize="35sp"
         android:fontFamily="@font/roboto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,7 +44,7 @@
         android:fontFamily="@font/roboto"
         android:text="終了する"
         android:textColor="#47BEFF"
-        android:textSize="20dp"
+        android:textSize="25sp"
         app:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHeight_default="percent"
