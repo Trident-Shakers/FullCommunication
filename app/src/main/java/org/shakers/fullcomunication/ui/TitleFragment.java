@@ -71,10 +71,11 @@ public class TitleFragment extends Fragment {
             requireActivity().getSupportFragmentManager().beginTransaction()
                     .replace(R.id.nav_host_fragment, new GenreChoiceFragment())
                     .commit();
-
-            Button hwubutton = view.findViewById(R.id.button_how_to_play);
         });
-
+        Button hwubutton = view.findViewById(R.id.button_how_to_play);
+        hwubutton.setOnClickListener(v -> {
+            ((MainActivity) getActivity()).loadFragment(new HowToPlayFragment());
+        });
         return view;
     }
 }
