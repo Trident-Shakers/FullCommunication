@@ -2,14 +2,22 @@ package org.shakers.fullcomunication.ui;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
+import com.google.android.material.appbar.MaterialToolbar;
 
 import org.shakers.fullcomunication.R;
 
@@ -65,11 +73,25 @@ public class HowToPlayFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_how_to_play, container, false);
-        //Fragmentの場合
-        ImageButton backButton = view.findViewById(R.id.button_back);
-        backButton.setOnClickListener(v -> {
-            ((MainActivity) getActivity()).loadFragment(new TitleFragment());
+
+        MaterialToolbar toolbar = view.findViewById(R.id.topAppBar);
+
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Get the screen width
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int screenWidth = displayMetrics.widthPixels;
+        
+        toolbar.setNavigationOnClickListener(v -> {
+            // Handle the back button event
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.nav_host_fragment, new TitleFragment());
+            transaction.commit();
         });
+
         return view;
     }
 }
+
