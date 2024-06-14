@@ -79,11 +79,6 @@ public class HowToPlayFragment extends Fragment {
         ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
         ((AppCompatActivity) requireActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        // Get the screen width
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int screenWidth = displayMetrics.widthPixels;
-        
         toolbar.setNavigationOnClickListener(v -> {
             // Handle the back button event
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -91,6 +86,105 @@ public class HowToPlayFragment extends Fragment {
             transaction.commit();
         });
 
+        Button button1 = view.findViewById(R.id.button1);
+        Button button2 = view.findViewById(R.id.button2);
+        Button button3 = view.findViewById(R.id.button3);
+        Button button4 = view.findViewById(R.id.button4);
+
+        final int[] i = {1};
+
+        button1.setOnClickListener(v -> {
+            switch (i[0]) {
+                case 1:
+                    button1.setBackgroundResource(R.drawable.circle_button);
+                    button1.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+                case 2:
+                    button2.setBackgroundResource(R.drawable.circle_button);
+                    button2.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+                case 3:
+                    button3.setBackgroundResource(R.drawable.circle_button);
+                    button3.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+                case 4:
+                    button4.setBackgroundResource(R.drawable.circle_button);
+                    button4.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+            }
+            i[0] = 1;
+            button1.setBackgroundResource(R.drawable.clicked_circle_button);
+            button1.setTextColor(getResources().getColor(R.color.white));
+        });
+        button2.setOnClickListener(v -> {
+            switch (i[0]) {
+                case 1:
+                    button1.setBackgroundResource(R.drawable.circle_button);
+                    button1.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+                case 2:
+                    button2.setBackgroundResource(R.drawable.circle_button);
+                    button2.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+                case 3:
+                    button3.setBackgroundResource(R.drawable.circle_button);
+                    button3.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+                case 4:
+                    button4.setBackgroundResource(R.drawable.circle_button);
+                    button4.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+            }
+            i[0] = 2;
+            button2.setBackgroundResource(R.drawable.clicked_circle_button);
+            button2.setTextColor(getResources().getColor(R.color.white));
+        });
+        button3.setOnClickListener(v -> {
+            switch (i[0]) {
+                case 1:
+                    button1.setBackgroundResource(R.drawable.circle_button);
+                    button1.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+                case 2:
+                    button2.setBackgroundResource(R.drawable.circle_button);
+                    button2.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+                case 3:
+                    button3.setBackgroundResource(R.drawable.circle_button);
+                    button3.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+                case 4:
+                    button4.setBackgroundResource(R.drawable.circle_button);
+                    button4.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+            }
+            i[0] = 3;
+            button3.setBackgroundResource(R.drawable.clicked_circle_button);
+            button3.setTextColor(getResources().getColor(R.color.white));
+        });
+        button4.setOnClickListener(v -> {
+            switch (i[0]) {
+                case 1:
+                    button1.setBackgroundResource(R.drawable.circle_button);
+                    button1.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+                case 2:
+                    button2.setBackgroundResource(R.drawable.circle_button);
+                    button2.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+                case 3:
+                    button3.setBackgroundResource(R.drawable.circle_button);
+                    button3.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+                case 4:
+                    button4.setBackgroundResource(R.drawable.circle_button);
+                    button4.setTextColor(getResources().getColor(R.color.primary_color));
+                    break;
+            }
+            i[0] = 4;
+            button4.setBackgroundResource(R.drawable.clicked_circle_button);
+            button4.setTextColor(getResources().getColor(R.color.white));
+        });
         return view;
     }
 }
