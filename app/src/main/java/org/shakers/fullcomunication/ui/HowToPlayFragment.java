@@ -1,21 +1,13 @@
 package org.shakers.fullcomunication.ui;
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -25,6 +17,7 @@ public class HowToPlayFragment extends Fragment {
     public HowToPlayFragment() {
         // Required empty public constructor
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +36,7 @@ public class HowToPlayFragment extends Fragment {
 
         toolbar.setNavigationOnClickListener(v -> {
             // Handle the back button event
-            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-            transaction.replace(R.id.nav_host_fragment, new TitleFragment());
-            transaction.commit();
+            ((MainActivity) requireActivity()).loadFragment(new TitleFragment());
         });
 
         setupButton(view, R.id.button1);
