@@ -7,21 +7,6 @@
     tools:context=".ui.TopicFragment"
     android:background="#FFFFFF">
 
-    <TextView
-        android:id="@+id/topic_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/roboto"
-        android:text="現在の話題は…"
-        android:textColor="#000000"
-        android:textSize="35sp"
-        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="percent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.50" />
-
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="250dp"
@@ -73,6 +58,21 @@
         app:layout_constraintWidth_percent="0.5"
         app:strokeColor="#47BEFF"
         app:strokeWidth="3dp" />
+
+    <TextView
+        android:id="@+id/topic_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
+        android:text="現在の話題は…"
+        android:textColor="#000000"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_default="percent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.50" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout >
