@@ -1,22 +1,21 @@
-package org.shakers.fullcomunication.ui;
+package org.shakers.fullcommunication.ui;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
-import org.shakers.fullcomunication.R;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import org.shakers.fullcommunication.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link TitleFragment#newInstance} factory method to
+ * Use the {@link ResultFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TitleFragment extends Fragment {
+public class ResultFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +26,7 @@ public class TitleFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public TitleFragment() {
+    public ResultFragment() {
         // Required empty public constructor
     }
 
@@ -37,11 +36,11 @@ public class TitleFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment TitleFragment.
+     * @return A new instance of fragment ResultFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TitleFragment newInstance(String param1, String param2) {
-        TitleFragment fragment = new TitleFragment();
+    public static ResultFragment newInstance(String param1, String param2) {
+        ResultFragment fragment = new ResultFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,21 +60,7 @@ public class TitleFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_title, container, false);
-        //Fragmentの場合
-        Button startButton = view.findViewById(R.id.button_start);
-        startButton.setOnClickListener(v -> {
-            Log.d("TitleFragment", "onClick: startButton");
-
-            // ジャンル選択画面に遷移
-            requireActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.nav_host_fragment, new GenreChoiceFragment())
-                    .commit();
-        });
-        Button hwubutton = view.findViewById(R.id.button_how_to_play);
-        hwubutton.setOnClickListener(v -> {
-            ((MainActivity) getActivity()).loadFragment(new HowToPlayFragment());
-        });
-        return view;
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_result, container, false);
     }
 }

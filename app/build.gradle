@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'org.shakers.fullcomunication'
+    namespace 'org.shakers.fullcommunication'
     compileSdk 34
 
     defaultConfig {
-        applicationId "org.shakers.fullcomunication"
+        applicationId "org.shakers.fullcommunication"
         minSdk 26
         targetSdk 34
         versionCode 1

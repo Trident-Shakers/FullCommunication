@@ -1,4 +1,4 @@
-package org.shakers.fullcomunication.sensor;
+package org.shakers.fullcommunication.sensor;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;

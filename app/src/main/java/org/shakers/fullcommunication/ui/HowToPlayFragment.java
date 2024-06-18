@@ -1,4 +1,4 @@
-package org.shakers.fullcomunication.ui;
+package org.shakers.fullcommunication.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
-import org.shakers.fullcomunication.R;
+import org.shakers.fullcommunication.R;
 
 public class HowToPlayFragment extends Fragment {
     public HowToPlayFragment() {
@@ -52,7 +52,7 @@ public class HowToPlayFragment extends Fragment {
         button.setOnClickListener(v -> {
             resetButtons(view);
             button.setBackgroundResource(R.drawable.clicked_circle_button);
-            button.setTextColor(getResources().getColor(R.color.white));
+            button.setTextColor(getResources().getColor(R.color.white, null));
         });
     }
 
@@ -61,7 +61,7 @@ public class HowToPlayFragment extends Fragment {
         for (int buttonId : buttonIds) {
             Button button = view.findViewById(buttonId);
             button.setBackgroundResource(R.drawable.circle_button);
-            button.setTextColor(getResources().getColor(R.color.primary_color));
+            button.setTextColor(getResources().getColor(R.color.primary_color, null));
         }
     }
 }
