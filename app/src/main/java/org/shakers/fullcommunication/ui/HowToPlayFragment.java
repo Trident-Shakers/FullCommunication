@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -48,8 +49,11 @@ public class HowToPlayFragment extends Fragment {
 
     private void setupButton(View view, int buttonId) {
         Button button = view.findViewById(buttonId);
+        TextView number = view.findViewById(R.id.number);
+        TextView text = view.findViewById(R.id.tipsText);
         button.setOnClickListener(v -> {
             resetButtons(view);
+            setTexts(buttonId, number, text);
             button.setBackgroundResource(R.drawable.clicked_circle_button);
             button.setTextColor(getResources().getColor(R.color.white, null));
         });
@@ -62,5 +66,16 @@ public class HowToPlayFragment extends Fragment {
             button.setBackgroundResource(R.drawable.circle_button);
             button.setTextColor(getResources().getColor(R.color.primary_color, null));
         }
+    }
+
+    private void setTexts(int buttonId, TextView tipsNumber, TextView tipsText) {
+        if (R.id.button1 == buttonId)
+            tipsNumber.setText(R.string.one);
+        else if (R.id.button2 == buttonId)
+            tipsNumber.setText(R.string.two);
+        else if (R.id.button3 == buttonId)
+            tipsNumber.setText(R.string.three);
+        else
+            throw new IllegalArgumentException("Invalid buttonId");
     }
 }
