@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.util.Pair;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -13,7 +16,24 @@ import com.google.android.material.appbar.MaterialToolbar;
 
 import org.shakers.fullcommunication.R;
 
+import java.util.HashMap;
+import java.util.Map;
+
+class ButtonResources {
+    int numberId;
+    int textId;
+    int imageId;
+
+    ButtonResources(int numberId, int textId, int imageId) {
+        this.numberId = numberId;
+        this.textId = textId;
+        this.imageId = imageId;
+    }
+}
+
 public class HowToPlayFragment extends Fragment {
+    private Map<Integer, ButtonResources> buttonResourcesMap = new HashMap<>();
+
     public HowToPlayFragment() {
         // Required empty public constructor
     }
@@ -39,6 +59,10 @@ public class HowToPlayFragment extends Fragment {
             ((MainActivity) requireActivity()).loadFragment(new TitleFragment());
         });
 
+        buttonResourcesMap.put(R.id.button1, new ButtonResources(R.string.one, R.string.genreTips, R.drawable.tips_genre));
+        buttonResourcesMap.put(R.id.button2, new ButtonResources(R.string.two, R.string.topicTips, R.drawable.tips_topic));
+        buttonResourcesMap.put(R.id.button3, new ButtonResources(R.string.three, R.string.talkTips, R.drawable.tips_talk));
+
         setupButton(view, R.id.button1);
         setupButton(view, R.id.button2);
         setupButton(view, R.id.button3);
@@ -48,8 +72,12 @@ public class HowToPlayFragment extends Fragment {
 
     private void setupButton(View view, int buttonId) {
         Button button = view.findViewById(buttonId);
+        TextView number = view.findViewById(R.id.number);
+        TextView text = view.findViewById(R.id.tipsText);
+        ImageView image = view.findViewById(R.id.tipsImage);
         button.setOnClickListener(v -> {
             resetButtons(view);
+            setTexts(buttonId, number, text, image);
             button.setBackgroundResource(R.drawable.clicked_circle_button);
             button.setTextColor(getResources().getColor(R.color.white, null));
         });
@@ -61,6 +89,15 @@ public class HowToPlayFragment extends Fragment {
             Button button = view.findViewById(buttonId);
             button.setBackgroundResource(R.drawable.circle_button);
             button.setTextColor(getResources().getColor(R.color.primary_color, null));
+        }
+    }
+
+    private void setTexts(int buttonId, TextView tipsNumber, TextView tipsText, ImageView tipsImage) {
+        ButtonResources resources = buttonResourcesMap.get(buttonId);
+        if (resources != null) {
+            tipsNumber.setText(resources.numberId);
+            tipsText.setText(resources.textId);
+            tipsImage.setImageResource(resources.imageId);
         }
     }
 }
