@@ -6,4 +6,6 @@
     <string name="two">②</string>
     <string name="three">③</string>
     <string name="genreTips">話したいジャンルを選択しよう！</string>
+    <string name="topicTips">振って話題を出そう！</string>
+    <string name="talkTips">出された話題について話そう！</string>
 </resources>

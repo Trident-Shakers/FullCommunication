@@ -84,7 +84,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:src="@drawable/thumbnail_fire" />
+            android:src="@drawable/tips_genre" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
