@@ -2,11 +2,14 @@ package org.shakers.fullcommunication.ui;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.material.appbar.MaterialToolbar;
 
 import org.shakers.fullcommunication.R;
 
@@ -61,6 +64,17 @@ public class GenreChoiceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_genre_choice, container, false);
+        View view = inflater.inflate(R.layout.fragment_genre_choice, container, false);
+
+        MaterialToolbar toolbar = view.findViewById(R.id.topAppBarGC);
+
+        ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) requireActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(v -> {
+            // Handle the back button event
+            ((MainActivity) requireActivity()).loadFragment(new TitleFragment());
+        });
+        return view;
     }
 }

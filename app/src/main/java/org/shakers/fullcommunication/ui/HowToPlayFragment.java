@@ -42,7 +42,6 @@ public class HowToPlayFragment extends Fragment {
         setupButton(view, R.id.button1);
         setupButton(view, R.id.button2);
         setupButton(view, R.id.button3);
-        setupButton(view, R.id.button4);
 
         return view;
     }
@@ -57,7 +56,7 @@ public class HowToPlayFragment extends Fragment {
     }
 
     private void resetButtons(View view) {
-        int[] buttonIds = {R.id.button1, R.id.button2, R.id.button3, R.id.button4};
+        int[] buttonIds = {R.id.button1, R.id.button2, R.id.button3};
         for (int buttonId : buttonIds) {
             Button button = view.findViewById(buttonId);
             button.setBackgroundResource(R.drawable.circle_button);
