@@ -8,7 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import org.shakers.fullcommunication.R;
 
@@ -69,10 +72,20 @@ public class TopicFragment extends Fragment {
         mButtonFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("TopicFragment", "onClick: finish_button");
                 ((MainActivity) requireActivity()).loadFragment(new ResultFragment());
             }
         });
+        Button debugButton = view.findViewById(R.id.debug_button);
+        FrameLayout frameLayout = view.findViewById(R.id.frameLayout);
+
+        debugButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Animation scaleUp = AnimationUtils.loadAnimation(getContext(), R.anim.scaleanimation);
+                frameLayout.startAnimation(scaleUp);
+            }
+        });
+
         return view;
     }
 }
