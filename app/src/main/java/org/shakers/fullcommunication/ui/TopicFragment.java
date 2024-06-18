@@ -1,4 +1,4 @@
-package org.shakers.fullcomunication.ui;
+package org.shakers.fullcommunication.ui;
 
 import android.os.Bundle;
 
@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import org.shakers.fullcomunication.R;
+import org.shakers.fullcommunication.R;
 
 /**
  * A simple {@link Fragment} subclass.

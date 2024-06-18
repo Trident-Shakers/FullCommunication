@@ -1,4 +1,4 @@
-package org.shakers.fullcomunication;
+package org.shakers.fullcommunication;
 
 import org.junit.Test;
 

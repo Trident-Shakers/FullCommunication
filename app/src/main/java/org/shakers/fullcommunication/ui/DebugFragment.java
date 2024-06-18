@@ -1,4 +1,4 @@
-package org.shakers.fullcomunication.ui;
+package org.shakers.fullcommunication.ui;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,7 +8,7 @@ import android.widget.Button;
 
 import androidx.fragment.app.Fragment;
 
-import org.shakers.fullcomunication.R;
+import org.shakers.fullcommunication.R;
 
 /**
  * 各画面への遷移を確認するためのデバッグ用Fragment

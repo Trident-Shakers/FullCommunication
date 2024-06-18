@@ -1,4 +1,4 @@
-package org.shakers.fullcomunication.ui;
+package org.shakers.fullcommunication.ui;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-import org.shakers.fullcomunication.R;
+import org.shakers.fullcommunication.R;
 
 public class MainActivity extends AppCompatActivity {
 
