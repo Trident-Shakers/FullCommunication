@@ -8,4 +8,5 @@
     <string name="genreTips">話したいジャンルを選択しよう！</string>
     <string name="topicTips">振って話題を出そう！</string>
     <string name="talkTips">出された話題について話そう！</string>
+    <string name="howToPlayImage">遊び方説明の画像</string>
 </resources>
