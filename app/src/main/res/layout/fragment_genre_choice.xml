@@ -1,16 +1,16 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     tools:context=".ui.GenreChoiceFragment"
     android:background="@color/white">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:id="@+id/coordinatorLayoutGC"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="0dp"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayoutGC"
@@ -23,7 +23,7 @@
                 android:id="@+id/topAppBarGC"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="#FFFFFF"
+                android:background="@color/white"
                 android:minHeight="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:navigationIconTint="@color/primary_color"
@@ -32,268 +32,111 @@
                 app:titleCentered="true" />
 
         </com.google.android.material.appbar.AppBarLayout>
-
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        app:layout_constraintTop_toBottomOf="@+id/coordinatorLayout"
+        app:layout_constraintTop_toBottomOf="@+id/coordinatorLayoutGC"
         android:background="@color/primary_color" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ジャンルを選択してください！"
+        android:id="@+id/guideText"
+        android:textSize="25sp"
+        android:textColor="@color/sentenceColor"
+        app:layout_constraintTop_toBottomOf="@id/coordinatorLayoutGC"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/genreButtons" />
 
-        <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:id="@+id/genreButtons"
+        app:layout_constraintTop_toBottomOf="@id/coordinatorLayoutGC"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttons"
+        app:layout_constraintWidth_percent="0.95"
+        app:layout_constraintHeight_percent="0.55"
+        app:layout_constraintVertical_bias="0.7">
+
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="好きなことを選択してください"
-            android:layout_margin="5dp"
-            android:textColor="@color/primary_color"
-            android:textSize="23dp" />
+            android:layout_height="2dp"
+            android:id="@+id/topBar"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="@color/primary_color" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/topBar"
+            app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintWidth_percent="0.9" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="440dp"
-        android:orientation="vertical">
-
-        <ScrollView
+        <View
             android:layout_width="match_parent"
-            android:layout_height="322dp">
+            android:layout_height="2dp"
+            android:id="@+id/bottomBar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@color/primary_color" />
 
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:columnCount="3"
-                android:padding="16dp">
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <!-- ボタンの大きさを変更し、カスタムスタイルを適用 -->
-                <Button
-                    android:id="@+id/button1"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:backgroundTint="@null"
-                    android:text="Button 1" />
-
-                <Button
-                    android:id="@+id/button2"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 2" />
-
-                <Button
-                    android:id="@+id/button3"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 3" />
-
-                <Button
-                    android:id="@+id/button4"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 4" />
-
-                <Button
-                    android:id="@+id/button5"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 5" />
-
-                <Button
-                    android:id="@+id/button6"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 6" />
-
-                <Button
-                    android:id="@+id/button7"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 7" />
-
-                <Button
-                    android:id="@+id/button8"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 8" />
-
-                <Button
-                    android:id="@+id/button9"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 9" />
-
-                <Button
-                    android:id="@+id/button10"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 10" />
-
-                <Button
-                    android:id="@+id/button11"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 11" />
-
-                <Button
-                    android:id="@+id/button12"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 12" />
-
-                <Button
-                    android:id="@+id/button13"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 13" />
-
-                <Button
-                    android:id="@+id/button14"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 14" />
-
-                <Button
-                    android:id="@+id/button15"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 15" />
-
-                <Button
-                    android:id="@+id/button16"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 16" />
-
-                <Button
-                    android:id="@+id/button17"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 17" />
-
-                <Button
-                    android:id="@+id/button18"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 18" />
-
-                <Button
-                    android:id="@+id/button19"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 19" />
-
-                <Button
-                    android:id="@+id/button20"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 20" />
-
-                <Button
-                    android:id="@+id/button21"
-                    style="@style/CustomButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_columnWeight="1"
-                    android:text="Button 21" />
-
-            </GridLayout>
-        </ScrollView>
-    </LinearLayout>
-
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:id="@+id/buttons"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintVertical_bias="0.8">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <Button
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="続ける"
+            android:textColor="#47BEFF"
+            android:textSize="25sp"
+            app:backgroundTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHorizontal_bias="0.2"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.5"
+            app:strokeColor="@color/primary_color"
+            app:strokeWidth="3dp" />
 
-            <Button
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto"
-                android:text="続ける"
-                android:textColor="#47BEFF"
-                android:textSize="25sp"
-                app:backgroundTint="#FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHeight_default="percent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintHorizontal_bias="0.2"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.5"
-                app:strokeColor="@color/primary_color"
-                app:strokeWidth="3dp" />
+        <Button
+            style="?attr/materialButtonOutlinedStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:text="つぎへ"
+            android:textColor="#47BEFF"
+            android:textSize="25sp"
+            app:backgroundTint="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintWidth_default="percent"
+            app:layout_constraintWidth_percent="0.5"
+            app:strokeColor="@color/primary_color"
+            app:strokeWidth="3dp" />
 
-            <Button
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto"
-                android:text="すすむ"
-                android:textColor="#47BEFF"
-                android:textSize="25sp"
-                app:backgroundTint="#FFFFFF"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintHeight_default="percent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintHorizontal_bias="0.8"
-                app:layout_constraintWidth_default="percent"
-                app:layout_constraintWidth_percent="0.5"
-                app:strokeColor="@color/primary_color"
-                app:strokeWidth="3dp" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </LinearLayout>
-</LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
