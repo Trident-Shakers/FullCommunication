@@ -8,4 +8,7 @@
     <string name="genreTips">話したいジャンルを選択しよう！</string>
     <string name="topicTips">振って話題を出そう！</string>
     <string name="talkTips">出された話題について話そう！</string>
+    <string name="title_start">はじめる</string>
+    <string name="title_how_to_play">遊び方</string>
+    <string name="title_app_logo_description">フルコミュニケーションのアプリロゴ</string>
 </resources>
