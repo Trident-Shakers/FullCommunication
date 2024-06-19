@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.util.Pair;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -59,9 +58,9 @@ public class HowToPlayFragment extends Fragment {
             ((MainActivity) requireActivity()).loadFragment(new TitleFragment());
         });
 
-        buttonResourcesMap.put(R.id.button1, new ButtonResources(R.string.one, R.string.genreTips, R.drawable.tips_genre));
-        buttonResourcesMap.put(R.id.button2, new ButtonResources(R.string.two, R.string.topicTips, R.drawable.tips_topic));
-        buttonResourcesMap.put(R.id.button3, new ButtonResources(R.string.three, R.string.talkTips, R.drawable.tips_talk));
+        buttonResourcesMap.put(R.id.button1, new ButtonResources(R.string.htp_one, R.string.htp_genreTips, R.drawable.tips_genre));
+        buttonResourcesMap.put(R.id.button2, new ButtonResources(R.string.htp_two, R.string.htp_topicTips, R.drawable.tips_topic));
+        buttonResourcesMap.put(R.id.button3, new ButtonResources(R.string.htp_three, R.string.htp_talkTips, R.drawable.tips_talk));
 
         setupButton(view, R.id.button1);
         setupButton(view, R.id.button2);
