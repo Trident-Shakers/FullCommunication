@@ -51,7 +51,7 @@
             android:gravity="center"
             android:text="好きなことを選択してください"
             android:layout_margin="5dp"
-            android:textColor="@color/primary_color"
+            android:textColor="#696969"
             android:textSize="23dp" />
 
 
@@ -77,170 +77,170 @@
                     android:id="@+id/button1"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
                     android:backgroundTint="@null"
-                    android:text="Button 1" />
+                    android:text="運動" />
 
                 <Button
                     android:id="@+id/button2"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 2" />
+                    android:text="ゲーム" />
 
                 <Button
                     android:id="@+id/button3"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 3" />
+                    android:text="音楽" />
 
                 <Button
                     android:id="@+id/button4"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 4" />
+                    android:text="料理" />
 
                 <Button
                     android:id="@+id/button5"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 5" />
+                    android:text="旅行" />
 
                 <Button
                     android:id="@+id/button6"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 6" />
+                    android:text="歌う" />
 
                 <Button
                     android:id="@+id/button7"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 7" />
+                    android:text="映画" />
 
                 <Button
                     android:id="@+id/button8"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 8" />
+                    android:text="アニメ" />
 
                 <Button
                     android:id="@+id/button9"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 9" />
+                    android:text="漫画" />
 
                 <Button
                     android:id="@+id/button10"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 10" />
+                    android:text="SNS" />
 
                 <Button
                     android:id="@+id/button11"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 11" />
+                    android:text="外出" />
 
                 <Button
                     android:id="@+id/button12"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 12" />
+                    android:text="楽器" />
 
                 <Button
                     android:id="@+id/button13"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 13" />
+                    android:text="動物" />
 
                 <Button
                     android:id="@+id/button14"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 14" />
+                    android:text="お絵描き" />
 
                 <Button
                     android:id="@+id/button15"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 15" />
+                    android:text="クルマ" />
 
                 <Button
                     android:id="@+id/button16"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 16" />
+                    android:text="勉強" />
 
                 <Button
                     android:id="@+id/button17"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 17" />
+                    android:text="ダンス" />
 
                 <Button
                     android:id="@+id/button18"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 18" />
+                    android:text="物作り" />
 
                 <Button
                     android:id="@+id/button19"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 19" />
+                    android:text="賭け事" />
 
                 <Button
                     android:id="@+id/button20"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 20" />
+                    android:text="服装" />
 
                 <Button
                     android:id="@+id/button21"
                     style="@style/CustomButtonStyle"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="84dp"
                     android:layout_columnWeight="1"
-                    android:text="Button 21" />
+                    android:text="写真" />
 
             </GridLayout>
         </ScrollView>
