@@ -77,6 +77,10 @@ public class GenreChoiceFragment extends Fragment {
             // Handle the back button event
             ((MainActivity) requireActivity()).loadFragment(new TitleFragment());
         });
+
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3)); // 3列に設定
+        recyclerView.setAdapter(new ButtonAdapter(21)); // 3 × 7 = 21個のボタン
         return view;
     }
 }
