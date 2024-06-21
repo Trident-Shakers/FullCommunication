@@ -8,15 +8,25 @@
 
     <!-- TODO: Update blank fragment layout -->
     <Button
+        android:id="@+id/button_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button_start"
         android:text="はじめる" />
 
     <Button
+        android:id="@+id/button_how_to_play"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button_how_to_play"
         android:text="遊び方" />
+
+    <ToggleButton
+        android:id="@+id/toggleButton"
+        android:layout_width="110dp"
+        android:layout_height="85dp"
+        android:background="@drawable/custom_toggle_button"
+        android:checked="false"
+        android:textColor="@color/toggle_button_text_color"
+        android:textOff="OHAYO"
+        android:textOn="OHAYO" />
 
 </LinearLayout>
