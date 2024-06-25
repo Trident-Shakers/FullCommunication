@@ -4,13 +4,8 @@
     android:layout_width="105dp"
     android:layout_height="85dp">
 
-    <!--    <ToggleButton-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="match_parent"-->
-    <!--        android:background="@drawable/custom_toggle_button"-->
-    <!--        android:textColor="@color/toggle_button_text_color" />-->
-
     <ToggleButton
+        android:id="@+id/genreButton"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="3dp"

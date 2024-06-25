@@ -14,6 +14,6 @@ public class ButtonViewHolder extends RecyclerView.ViewHolder {
 
     public ButtonViewHolder(View view) {
         super(view);
-        button = view.findViewById(R.id.button);
+        button = view.findViewById(R.id.genreButton);
     }
 }
