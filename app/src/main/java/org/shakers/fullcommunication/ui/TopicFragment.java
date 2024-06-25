@@ -1,5 +1,8 @@
 package org.shakers.fullcommunication.ui;
 
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +15,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.FrameLayout;
+
+import org.shakers.fullcommunication.sensor.ShakeDetector;
+import org.shakers.fullcommunication.sensor.ShakeDetector.OnShakeListener;
 
 import org.shakers.fullcommunication.R;
 
@@ -67,6 +73,9 @@ public class TopicFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_topic, container, false);
+
+
+
         //終了ボタンの処理
         Button mButtonFinish = view.findViewById(R.id.finish_button);
         mButtonFinish.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +94,16 @@ public class TopicFragment extends Fragment {
                 frameLayout.startAnimation(scaleUp);
             }
         });
+
+        ShakeDetector shakeDetector = new ShakeDetector(() -> {
+            Log.d("TopicFragment", "onShake: ");
+            Animation scaleUp = AnimationUtils.loadAnimation(getContext(), R.anim.scaleanimation);
+            frameLayout.startAnimation(scaleUp);
+        });
+        //センサーが振られたら反応するようにSensorManagerを設定
+        SensorManager sensorManager = (SensorManager) requireActivity().getSystemService(Context.SENSOR_SERVICE);
+        Sensor accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        sensorManager.registerListener(shakeDetector, accelerometer, SensorManager.SENSOR_DELAY_UI);
 
         return view;
     }
