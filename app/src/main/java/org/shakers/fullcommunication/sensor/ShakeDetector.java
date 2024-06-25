@@ -18,7 +18,7 @@ import android.util.Log;
  * </p>
  */
 public class ShakeDetector implements SensorEventListener {
-    private static final float SHAKE_THRESHOLD = 15.0f;
+    private static final float SHAKE_THRESHOLD = 30.0f;
     private static final int SHAKE_WAIT_TIME_MS = 1000;
     private static final int LOG_INTERVAL = 1000;
 
@@ -49,6 +49,7 @@ public class ShakeDetector implements SensorEventListener {
             float deltaY = y - mLastY;
             float deltaZ = z - mLastZ;
 
+            // xが30をトリガーにするのが良いと判断
             float delta = (float) Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
 
             Log.d("ShakeDetector",
@@ -75,14 +76,11 @@ public class ShakeDetector implements SensorEventListener {
             float deltaY = y - mLastY;
             float deltaZ = z - mLastZ;
 
-            float delta = (float) Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
-
-
-            if (delta > SHAKE_THRESHOLD) {
+            // 解析した結果、xが30をトリガーにするのが良いと判断
+            if (deltaX > SHAKE_THRESHOLD || deltaY > SHAKE_THRESHOLD || deltaZ > SHAKE_THRESHOLD) {
                 mShakeTimestamp = now;
                 mListener.onShake();
             }
-
 
             mLastX = x;
             mLastY = y;
