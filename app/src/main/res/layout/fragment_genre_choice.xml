@@ -101,37 +101,39 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.8">
 
-        <Button
-            style="?attr/materialButtonOutlinedStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto"
-            android:text="続ける"
-            android:textColor="#47BEFF"
-            android:textSize="25sp"
-            app:backgroundTint="#FFFFFF"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHeight_default="percent"
-            app:layout_constraintHorizontal_bias="0.2"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintWidth_default="percent"
-            app:layout_constraintWidth_percent="0.5"
-            app:strokeColor="@color/primary_color"
-            app:strokeWidth="3dp" />
+        <!--        <Button-->
+        <!--            android:id="@+id/buttonContinue"-->
+        <!--            style="?attr/materialButtonOutlinedStyle"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:fontFamily="@font/roboto"-->
+        <!--            android:text="続ける"-->
+        <!--            android:textColor="#47BEFF"-->
+        <!--            android:textSize="25sp"-->
+        <!--            app:backgroundTint="#FFFFFF"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintHeight_default="percent"-->
+        <!--            app:layout_constraintHorizontal_bias="0.2"-->
+        <!--            app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--            app:layout_constraintRight_toRightOf="parent"-->
+        <!--            app:layout_constraintWidth_default="percent"-->
+        <!--            app:layout_constraintWidth_percent="0.5"-->
+        <!--            app:strokeColor="@color/primary_color"-->
+        <!--            app:strokeWidth="3dp" />-->
 
         <Button
+            android:id="@+id/buttonNext"
             style="?attr/materialButtonOutlinedStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/roboto"
-            android:text="つぎへ"
+            android:text="次へ"
             android:textColor="#47BEFF"
             android:textSize="25sp"
             app:backgroundTint="#FFFFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHeight_default="percent"
-            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintWidth_default="percent"

@@ -1,6 +1,7 @@
 package org.shakers.fullcommunication.ui;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,13 +46,19 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonViewHolder> {
         holder.button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences preferences = context.getSharedPreferences("DATA", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                String key = String.valueOf(position + 1); // 1から21までのキーを生成
                 if (isChecked) {
                     // ToggleButtonがONのときの処理
-
+                    // ボタンのテキストをSharedPreferencesに保存
+                    editor.putString(key, holder.button.getText().toString());
                 } else {
                     // ToggleButtonがOFFのときの処理
-
+                    // SharedPreferencesからボタンのテキストを削除
+                    editor.remove(key);
                 }
+                editor.apply();
             }
         });
     }

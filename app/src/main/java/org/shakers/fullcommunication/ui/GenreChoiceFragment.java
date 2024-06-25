@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -76,6 +77,15 @@ public class GenreChoiceFragment extends Fragment {
         toolbar.setNavigationOnClickListener(v -> {
             // Handle the back button event
             ((MainActivity) requireActivity()).loadFragment(new TitleFragment());
+        });
+
+        Button nextButton = view.findViewById(R.id.buttonNext);
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) requireActivity()).loadFragment(new TopicFragment());
+            }
         });
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
