@@ -80,7 +80,7 @@ public class GenreChoiceFragment extends Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3)); // 3列に設定
-        recyclerView.setAdapter(new ButtonAdapter(21)); // 3 × 7 = 21個のボタン
+        recyclerView.setAdapter(new ButtonAdapter(21, getContext())); // 3 × 7 = 21個のボタン
         return view;
     }
 }

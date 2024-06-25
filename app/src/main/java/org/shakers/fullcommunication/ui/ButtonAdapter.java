@@ -1,9 +1,6 @@
 package org.shakers.fullcommunication.ui;
 
-import static android.content.ContentValues.TAG;
-
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,9 +38,9 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonViewHolder> {
         String[] buttonTexts = loadButtonTexts();
         if (buttonTexts != null && position < buttonTexts.length) {
             holder.button.setText(buttonTexts[position]);
+            holder.button.setTextOn(buttonTexts[position]);
+            holder.button.setTextOff(buttonTexts[position]);
         }
-        holder.button.setTextOn("wao");
-        holder.button.setTextOff("wao");
         // 必要に応じてクリックリスナーを設定する
         holder.button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
