@@ -5,7 +5,8 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.util.Log;
-
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 振ったことを検知するクラス
@@ -18,15 +19,15 @@ import android.util.Log;
  * </p>
  */
 public class ShakeDetector implements SensorEventListener {
-    private static final float SHAKE_THRESHOLD = 30.0f;
-    private static final int SHAKE_WAIT_TIME_MS = 1000;
-    private static final int LOG_INTERVAL = 1000;
+    private static final float SHAKE_THRESHOLD = 20.0f;
+    private static final int SHAKE_WAIT_TIME_MS = 500;
+    private static final int SHAKE_DURATION_MS = 3000;
+    private static final int SHAKE_COUNT = 3;
 
-    private long mShakeTimestamp;
-    private long mLastLogTimestamp;
     private float mLastX, mLastY, mLastZ;
 
     private final OnShakeListener mListener;
+    private final List<Long> mShakeTimestamps = new ArrayList<>();
 
     public interface OnShakeListener {
         void onShake();
@@ -40,54 +41,33 @@ public class ShakeDetector implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         long now = System.currentTimeMillis();
 
-        if ((now - mLastLogTimestamp) > LOG_INTERVAL) {
-            float x = event.values[0];
-            float y = event.values[1];
-            float z = event.values[2];
+        float x = event.values[0];
+        float y = event.values[1];
+        float z = event.values[2];
 
-            float deltaX = x - mLastX;
-            float deltaY = y - mLastY;
-            float deltaZ = z - mLastZ;
+        float deltaX = x - mLastX;
+        float deltaY = y - mLastY;
+        float deltaZ = z - mLastZ;
 
-            // xが30をトリガーにするのが良いと判断
-            float delta = (float) Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
+        float delta = (float) Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
 
-            Log.d("ShakeDetector",
-                    "-----------------------------------\n" +
-                            "onSensorChanged:\n" +
-                            "x: " + x + " last-x: " + mLastX + "\n" +
-                            "y: " + y + " last-y: " + mLastY + "\n" +
-                            "z: " + z + " last-z: " + mLastZ + "\n" +
-                            "delta: " + delta + "\n" +
-                            "now: " + now + "\n" +
-                            "mShakeTimestamp: " + mShakeTimestamp + "\n" +
-                            "SHAKE_WAIT_TIME_MS: " + SHAKE_WAIT_TIME_MS + "\n" +
-                            "SHAKE_THRESHOLD: " + SHAKE_THRESHOLD + "\n" +
-                            "result: " + (delta > SHAKE_THRESHOLD) + "\n-----------------------------------");
-
-            mLastLogTimestamp = now;
-        }
-        if ((now - mShakeTimestamp) > SHAKE_WAIT_TIME_MS) {
-            float x = event.values[0];
-            float y = event.values[1];
-            float z = event.values[2];
-
-            float deltaX = x - mLastX;
-            float deltaY = y - mLastY;
-            float deltaZ = z - mLastZ;
-
-            // 解析した結果、xが30をトリガーにするのが良いと判断
-            if (deltaX > SHAKE_THRESHOLD || deltaY > SHAKE_THRESHOLD || deltaZ > SHAKE_THRESHOLD) {
-                mShakeTimestamp = now;
-                mListener.onShake();
+        if (delta > SHAKE_THRESHOLD) {
+            mShakeTimestamps.add(now);
+            Log.d("ShakeDetector", "Shake detected: " + mShakeTimestamps.size() + " times");
+            // 古いタイムスタンプを削除
+            while (!mShakeTimestamps.isEmpty() && now - mShakeTimestamps.get(0) > SHAKE_DURATION_MS) {
+                mShakeTimestamps.remove(0);
             }
-
-            mLastX = x;
-            mLastY = y;
-            mLastZ = z;
+            // 一定時間内にSHAKE_COUNT回以上の振動があった場合
+            if (mShakeTimestamps.size() >= SHAKE_COUNT) {
+                mListener.onShake();
+                mShakeTimestamps.clear(); // 検知後にリストをリセット
+            }
         }
+        mLastX = x;
+        mLastY = y;
+        mLastZ = z;
     }
-
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         // センサーの精度が変更された場合の処理（必要な場合）
