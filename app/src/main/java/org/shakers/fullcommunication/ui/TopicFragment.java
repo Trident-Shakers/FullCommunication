@@ -1,7 +1,10 @@
 package org.shakers.fullcommunication.ui;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -10,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
@@ -27,9 +31,13 @@ public class TopicFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private  float currentScaleX = 1.0f;
+    private  float currentScaleY = 1.0f;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ValueAnimator debugAnimator;
 
     public TopicFragment() {
         // Required empty public constructor
@@ -67,7 +75,9 @@ public class TopicFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_topic, container, false);
-        //終了ボタンの処理
+        /**
+         * 終了ボタンの処理
+         */
         Button mButtonFinish = view.findViewById(R.id.finish_button);
         mButtonFinish.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,16 +85,94 @@ public class TopicFragment extends Fragment {
                 ((MainActivity) requireActivity()).loadFragment(new ResultFragment());
             }
         });
+
+
         Button debugButton = view.findViewById(R.id.debug_button);
+        Button fasterButton = view.findViewById(R.id.debug_faster_button);
         FrameLayout frameLayout = view.findViewById(R.id.frameLayout);
+
 
         debugButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Animation scaleUp = AnimationUtils.loadAnimation(getContext(), R.anim.scaleanimation);
-                frameLayout.startAnimation(scaleUp);
+                // ValueAnimatorのインスタンスを作成
+                debugAnimator = ValueAnimator.ofFloat(1.0f, 5.0f);
+
+                // アニメーションの時間を1000ミリ秒に設定
+                debugAnimator.setDuration(5000);
+
+                // アニメーションの進行に応じてビューのスケールファクターを更新
+                debugAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        float scale = (float) animation.getAnimatedValue();
+                        frameLayout.setScaleX(scale);
+                        frameLayout.setScaleY(scale);
+                    }
+                });
+                debugAnimator.start();
             }
         });
+
+
+
+
+        fasterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 現在のスケールを取得
+                currentScaleX = frameLayout.getScaleX();
+                currentScaleY = frameLayout.getScaleY();
+                Log.d("TAG", "currentScaleX: " + currentScaleX + " currentScaleY: " + currentScaleY);
+
+                ValueAnimator fasterAnimator = ValueAnimator.ofFloat(currentScaleX, 5.0f);
+
+                fasterAnimator.setDuration(500);
+                //
+                if(debugAnimator != null) {
+                    debugAnimator.cancel();
+                }
+                fasterAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        float scale = (float) animation.getAnimatedValue();
+                        frameLayout.setScaleX(scale);
+                        frameLayout.setScaleY(scale);
+                    }
+                });
+                fasterAnimator.addListener(new Animator.AnimatorListener() {
+
+                    @Override
+                    public void onAnimationEnd(@NonNull Animator animation) {
+                        ValueAnimator shrinkAnimator = ValueAnimator.ofFloat(5.0f, 1.0f);
+                        shrinkAnimator.setDuration(500);
+
+                        shrinkAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public void onAnimationUpdate(ValueAnimator animation) {
+                                float scale = (float) animation.getAnimatedValue();
+                                frameLayout.setScaleX(scale);
+                                frameLayout.setScaleY(scale);
+                            }
+
+                        });
+                        shrinkAnimator.start();
+                    }
+                    @Override
+                    public void onAnimationStart(Animator animation) {}
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {}
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {}
+                });
+                fasterAnimator.start();
+
+
+            }
+        });
+
 
         return view;
     }
