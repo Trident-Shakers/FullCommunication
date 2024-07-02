@@ -72,6 +72,10 @@ public class TopicFragment extends Fragment {
         debugButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                currentScale = frameLayout.getScaleX();
+                if (debugAnimator != null && debugAnimator.isRunning()) {
+                    debugAnimator.cancel();
+                }
                 // ValueAnimatorのインスタンスを作成
                 debugAnimator = ValueAnimator.ofFloat(currentScale, 5.0f);
 
@@ -87,11 +91,16 @@ public class TopicFragment extends Fragment {
                         frameLayout.setScaleY(scale);
                     }
                 });
+
+                /**
+                 * 縮むアニメーション
+                 */
                 debugAnimator.addListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationEnd(@NonNull Animator animation) {
                         ValueAnimator shrinkAnimator = ValueAnimator.ofFloat(5.0f, 1.0f);
                         shrinkAnimator.setDuration(500);
+                        currentScale = 1.0f;
 
                         shrinkAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
@@ -117,8 +126,6 @@ public class TopicFragment extends Fragment {
             }
         });
 
-
-
         /**
          * 早くなるデバッグ用のボタン
          */
@@ -135,6 +142,9 @@ public class TopicFragment extends Fragment {
                 if(debugAnimator != null) {
                     debugAnimator.cancel();
                 }
+                if(fasterAnimator != null ){
+                    fasterAnimator.cancel();
+                }
                 fasterAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator animation) {
@@ -143,11 +153,15 @@ public class TopicFragment extends Fragment {
                         frameLayout.setScaleY(scale);
                     }
                 });
+                /**
+                 * 縮むアニメーション
+                 */
                 fasterAnimator.addListener(new Animator.AnimatorListener() {
                     @Override
                     public void onAnimationEnd(@NonNull Animator animation) {
                         ValueAnimator shrinkAnimator = ValueAnimator.ofFloat(5.0f, 1.0f);
                         shrinkAnimator.setDuration(500);
+                        currentScale = 1.0f;
 
                         shrinkAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
