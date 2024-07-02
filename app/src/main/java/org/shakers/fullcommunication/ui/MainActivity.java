@@ -16,10 +16,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Title Fragmentを読み込むようにする
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.nav_host_fragment, new TitleFragment())
-                .commit();
+        // 初期画面はTitleFragmentを読み込む
+        loadFragment(new TitleFragment());
 
         Button debugButton = findViewById(R.id.debug_button);
         debugButton.setOnClickListener(v -> {
@@ -39,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
     public void loadFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.nav_host_fragment, fragment);
-        transaction.addToBackStack(null);
         transaction.commit();
     }
 
