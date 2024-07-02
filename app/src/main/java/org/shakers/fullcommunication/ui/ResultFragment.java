@@ -75,10 +75,29 @@ public class ResultFragment extends Fragment {
         TextView secondPlace = view.findViewById(R.id.ranking_second_topic);
         TextView thirdPlace = view.findViewById(R.id.ranking_third_topic);
 
+        // トピックと時間の書かれた文字列を取得
         view.getContext();
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("topic_time_count_list", Context.MODE_PRIVATE);
         String value = sharedPreferences.getString("topic_time_count_list", null);
 
+        setPlace(value, firstPlace, secondPlace, thirdPlace);
+
+        return view;
+    }
+
+
+    /**
+     * 話された時間が長い順に話題をTextViewにセットします。
+     * <p>
+     *     Topic-Time,Topic-Time...の形式で記述されている文字列を受け取ります。
+     * </p>
+     *
+     * @param value トピックと時間の書かれた文字列
+     * @param firstPlace １位のTextView
+     * @param secondPlace ２位のTextView
+     * @param thirdPlace ３位のTextView
+     */
+    private void setPlace(String value, TextView firstPlace, TextView secondPlace, TextView thirdPlace) {
         if (value != null) {
             String[] valueArray = value.split(",");
             HashMap<String, Integer> map = new HashMap<>();
@@ -95,6 +114,6 @@ public class ResultFragment extends Fragment {
             secondPlace.setText(list.get(1).getKey());
             thirdPlace.setText(list.get(2).getKey());
         }
-        return view;
     }
 }
+
