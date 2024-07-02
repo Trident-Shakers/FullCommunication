@@ -4,10 +4,13 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
@@ -75,6 +78,19 @@ public class GenreChoiceFragment extends Fragment {
             // Handle the back button event
             ((MainActivity) requireActivity()).loadFragment(new TitleFragment());
         });
+
+        Button nextButton = view.findViewById(R.id.buttonNext);
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ((MainActivity) requireActivity()).loadFragment(new TopicFragment());
+            }
+        });
+
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3)); // 3列に設定
+        recyclerView.setAdapter(new ButtonAdapter(21, getContext())); // 3 × 7 = 21個のボタン
         return view;
     }
 }
