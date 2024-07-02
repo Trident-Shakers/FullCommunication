@@ -32,10 +32,10 @@ public class DebugFragment extends Fragment {
         Button topicOfferingButton = view.findViewById(R.id.button_topic_offering);
 //        Button resultButton = view.findViewById(R.id.button_result);
 
-        titleButton.setOnClickListener(v -> ((MainActivity) getActivity()).loadFragment(new TitleFragment()));
-        genreChoiceButton.setOnClickListener(v -> ((MainActivity) getActivity()).loadFragment(new GenreChoiceFragment()));
-        howToPlayButton.setOnClickListener(v -> ((MainActivity) getActivity()).loadFragment(new HowToPlayFragment()));
-        topicOfferingButton.setOnClickListener(v -> ((MainActivity) getActivity()).loadFragment(new TopicFragment()));
+        titleButton.setOnClickListener(v -> ((MainActivity) requireActivity()).loadFragment(new TitleFragment()));
+        genreChoiceButton.setOnClickListener(v -> ((MainActivity) requireActivity()).loadFragment(new GenreChoiceFragment()));
+        howToPlayButton.setOnClickListener(v -> ((MainActivity) requireActivity()).loadFragment(new HowToPlayFragment()));
+        topicOfferingButton.setOnClickListener(v -> ((MainActivity) requireActivity()).loadFragment(new TopicFragment()));
 //        resultButton.setOnClickListener(v -> ((MainActivity) getActivity()).loadFragment(new ResultFragment()));
 
         return view;

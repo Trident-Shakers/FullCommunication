@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.util.Pair;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -18,6 +17,7 @@ import org.shakers.fullcommunication.R;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 class ButtonResources {
     int numberId;
@@ -31,8 +31,21 @@ class ButtonResources {
     }
 }
 
+/**
+ * プレイ方法画面のFragment
+ * <p>プレイ方法を説明する画面です。</p>
+ * 画面遷移の流れ:
+ * <br>
+ * {@link TitleFragment} -> HowToPlayFragment
+ * <br>
+ * HowToPlayFragment -> {@link TopicFragment}
+ */
 public class HowToPlayFragment extends Fragment {
-    private Map<Integer, ButtonResources> buttonResourcesMap = new HashMap<>();
+    private final Map<Integer, ButtonResources> buttonResourcesMap = new HashMap<>();
+    private static final int[] BUTTON_IDS = {R.id.button1, R.id.button2, R.id.button3};
+    private TextView numberTextView;
+    private TextView tipsTextView;
+    private ImageView tipsImageView;
 
     public HowToPlayFragment() {
         // Required empty public constructor
@@ -50,54 +63,50 @@ public class HowToPlayFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_how_to_play, container, false);
 
         MaterialToolbar toolbar = view.findViewById(R.id.topAppBar);
-
         ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) requireActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
-        toolbar.setNavigationOnClickListener(v -> {
-            // Handle the back button event
-            ((MainActivity) requireActivity()).loadFragment(new TitleFragment());
-        });
+        toolbar.setNavigationOnClickListener(v -> ((MainActivity) requireActivity()).loadFragment(new TitleFragment()));
 
         buttonResourcesMap.put(R.id.button1, new ButtonResources(R.string.one, R.string.htp_genreTips, R.drawable.tips_genre));
         buttonResourcesMap.put(R.id.button2, new ButtonResources(R.string.two, R.string.htp_topicTips, R.drawable.tips_topic));
         buttonResourcesMap.put(R.id.button3, new ButtonResources(R.string.three, R.string.htp_talkTips, R.drawable.tips_talk));
 
-        setupButton(view, R.id.button1);
-        setupButton(view, R.id.button2);
-        setupButton(view, R.id.button3);
+        numberTextView = view.findViewById(R.id.number);
+        tipsTextView = view.findViewById(R.id.tipsText);
+        tipsImageView = view.findViewById(R.id.tipsImage);
+
+        for (int buttonId : BUTTON_IDS) {
+            setupButton(view, buttonId);
+        }
 
         return view;
     }
 
     private void setupButton(View view, int buttonId) {
         Button button = view.findViewById(buttonId);
-        TextView number = view.findViewById(R.id.number);
-        TextView text = view.findViewById(R.id.tipsText);
-        ImageView image = view.findViewById(R.id.tipsImage);
         button.setOnClickListener(v -> {
             resetButtons(view);
-            setTexts(buttonId, number, text, image);
+            setTexts(buttonId);
             button.setBackgroundResource(R.drawable.clicked_circle_button);
             button.setTextColor(getResources().getColor(R.color.white, null));
         });
     }
 
     private void resetButtons(View view) {
-        int[] buttonIds = {R.id.button1, R.id.button2, R.id.button3};
-        for (int buttonId : buttonIds) {
+        for (int buttonId : BUTTON_IDS) {
             Button button = view.findViewById(buttonId);
             button.setBackgroundResource(R.drawable.circle_button);
             button.setTextColor(getResources().getColor(R.color.primary_color, null));
         }
     }
 
-    private void setTexts(int buttonId, TextView tipsNumber, TextView tipsText, ImageView tipsImage) {
+    private void setTexts(int buttonId) {
         ButtonResources resources = buttonResourcesMap.get(buttonId);
         if (resources != null) {
-            tipsNumber.setText(resources.numberId);
-            tipsText.setText(resources.textId);
-            tipsImage.setImageResource(resources.imageId);
+            numberTextView.setText(resources.numberId);
+            tipsTextView.setText(resources.textId);
+            tipsImageView.setImageResource(resources.imageId);
         }
     }
 }
