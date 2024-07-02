@@ -29,8 +29,8 @@ public class TopicFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private  float currentScaleX = 1.0f;
-    private  float currentScaleY = 1.0f;
+    private  float currentScale = 1.0f;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -72,8 +72,12 @@ public class TopicFragment extends Fragment {
         debugButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                currentScale = frameLayout.getScaleX();
+                if (debugAnimator != null && debugAnimator.isRunning()) {
+                    debugAnimator.cancel();
+                }
                 // ValueAnimatorのインスタンスを作成
-                debugAnimator = ValueAnimator.ofFloat(1.0f, 5.0f);
+                debugAnimator = ValueAnimator.ofFloat(currentScale, 5.0f);
 
                 // アニメーションの時間を1000ミリ秒に設定
                 debugAnimator.setDuration(5000);
@@ -87,27 +91,59 @@ public class TopicFragment extends Fragment {
                         frameLayout.setScaleY(scale);
                     }
                 });
+
+                /**
+                 * 縮むアニメーション
+                 */
+                debugAnimator.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationEnd(@NonNull Animator animation) {
+                        ValueAnimator shrinkAnimator = ValueAnimator.ofFloat(5.0f, 1.0f);
+                        shrinkAnimator.setDuration(500);
+                        currentScale = 1.0f;
+
+                        shrinkAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                            @Override
+                            public void onAnimationUpdate(ValueAnimator animation) {
+                                float scale = (float) animation.getAnimatedValue();
+                                frameLayout.setScaleX(scale);
+                                frameLayout.setScaleY(scale);
+                            }
+
+                        });
+                        shrinkAnimator.start();
+                    }
+                    @Override
+                    public void onAnimationStart(Animator animation) {}
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {}
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {}
+                });
                 debugAnimator.start();
             }
         });
 
-
-
-
+        /**
+         * 早くなるデバッグ用のボタン
+         */
         fasterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 現在のスケールを取得
-                currentScaleX = frameLayout.getScaleX();
-                currentScaleY = frameLayout.getScaleY();
-                Log.d("TAG", "currentScaleX: " + currentScaleX + " currentScaleY: " + currentScaleY);
+                currentScale = frameLayout.getScaleX();
 
-                ValueAnimator fasterAnimator = ValueAnimator.ofFloat(currentScaleX, 5.0f);
+                ValueAnimator fasterAnimator = ValueAnimator.ofFloat(currentScale, 5.0f);
 
                 fasterAnimator.setDuration(500);
                 //
                 if(debugAnimator != null) {
                     debugAnimator.cancel();
+                }
+                if(fasterAnimator != null ){
+                    fasterAnimator.cancel();
                 }
                 fasterAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
@@ -117,12 +153,15 @@ public class TopicFragment extends Fragment {
                         frameLayout.setScaleY(scale);
                     }
                 });
+                /**
+                 * 縮むアニメーション
+                 */
                 fasterAnimator.addListener(new Animator.AnimatorListener() {
-
                     @Override
                     public void onAnimationEnd(@NonNull Animator animation) {
                         ValueAnimator shrinkAnimator = ValueAnimator.ofFloat(5.0f, 1.0f);
                         shrinkAnimator.setDuration(500);
+                        currentScale = 1.0f;
 
                         shrinkAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                             @Override
