@@ -1,7 +1,6 @@
 package org.shakers.fullcommunication.ui;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,14 +36,7 @@ public class TitleFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_title, container, false);
         //Fragmentの場合
         Button startButton = view.findViewById(R.id.button_start);
-        startButton.setOnClickListener(v -> {
-            Log.d("TitleFragment", "onClick: startButton");
-
-            // ジャンル選択画面に遷移
-            requireActivity().getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.nav_host_fragment, new GenreChoiceFragment())
-                    .commit();
-        });
+        startButton.setOnClickListener(v -> ((MainActivity) requireActivity()).loadFragment(new GenreChoiceFragment()));
         Button htpbutton = view.findViewById(R.id.button_how_to_play);
         htpbutton.setOnClickListener(v -> ((MainActivity) requireActivity()).loadFragment(new HowToPlayFragment()));
         return view;
