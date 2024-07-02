@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -22,24 +21,23 @@
         app:layout_constraintWidth_percent="0.8"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1" >
+        app:layout_constraintVertical_bias="0.1">
 
-    <TextView
-        android:id="@+id/topic"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="長く話した話題ランキング"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:fontFamily="@font/roboto"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        app:layout_constraintHorizontal_bias="0.5"
-        />
+        <TextView
+            android:id="@+id/topic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="長く話した話題ランキング"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboto"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.1"
+            app:layout_constraintHorizontal_bias="0.5" />
         <!--話題ランキング1位-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ranking_first_layout"
@@ -64,23 +62,27 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintVertical_bias="0.3"
-                app:layout_constraintHorizontal_bias="0.2"
-                />
+                app:layout_constraintHorizontal_bias="0.2" />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/ranking_first_topic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:text="-------------------"
                 android:textStyle="bold"
                 android:textSize="20sp"
+                android:textColor="#696969"
+                android:gravity="center"
+                app:layout_constraintWidth_percent="0.5"
                 app:layout_constraintLeft_toRightOf="@+id/ranking_first"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintVertical_bias="0.5"
-                app:layout_constraintHorizontal_bias="0.3"
-                />
+                app:layout_constraintHorizontal_bias="0.3" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
         <!--話題ランキング2位-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ranking_second_layout"
@@ -105,22 +107,24 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintVertical_bias="0.3"
-                app:layout_constraintHorizontal_bias="0.2"
-                />
+                app:layout_constraintHorizontal_bias="0.2" />
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 android:id="@+id/ranking_second_topic"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:text="-------------------"
                 android:textStyle="bold"
                 android:textSize="20sp"
+                android:textColor="#696969"
+                android:gravity="center"
+                app:layout_constraintWidth_percent="0.5"
                 app:layout_constraintLeft_toRightOf="@+id/ranking_second"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintVertical_bias="0.5"
-                app:layout_constraintHorizontal_bias="0.3"
-                />
+                app:layout_constraintHorizontal_bias="0.3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -139,7 +143,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="3"
-                android:textColor="#c0c0c0"
+                android:textColor="#ac6b25"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -151,11 +155,14 @@
 
             <TextView
                 android:id="@+id/ranking_third_topic"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="-------------------"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:textColor="#696969"
+                android:gravity="center"
+                app:layout_constraintWidth_percent="0.5"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintHorizontal_bias="0.3"
                 app:layout_constraintLeft_toRightOf="@+id/ranking_third"
@@ -176,10 +183,7 @@
             app:layout_constraintHeight_percent="0.35"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ranking_third_layout"
-            app:layout_constraintVertical_bias="0.5"
-            />
-
-
+            app:layout_constraintVertical_bias="0.5" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -192,7 +196,7 @@
         android:textSize="30sp"
         android:textStyle="bold"
         android:fontFamily="@font/roboto"
-        android:textColor="#fff"
+        android:textColor="@color/white"
 
 
         app:layout_constraintBottom_toBottomOf="parent"
@@ -201,6 +205,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_default="percent"
-        app:layout_constraintVertical_bias="0.85"
-        />
-</androidx.constraintlayout.widget.ConstraintLayout >
+        app:layout_constraintVertical_bias="0.85" />
+</androidx.constraintlayout.widget.ConstraintLayout>
