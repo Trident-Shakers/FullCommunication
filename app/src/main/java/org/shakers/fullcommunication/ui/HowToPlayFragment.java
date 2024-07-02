@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.util.Pair;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -18,6 +17,7 @@ import org.shakers.fullcommunication.R;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 class ButtonResources {
     int numberId;
@@ -32,7 +32,7 @@ class ButtonResources {
 }
 
 public class HowToPlayFragment extends Fragment {
-    private Map<Integer, ButtonResources> buttonResourcesMap = new HashMap<>();
+    private final Map<Integer, ButtonResources> buttonResourcesMap = new HashMap<>();
 
     public HowToPlayFragment() {
         // Required empty public constructor
@@ -52,7 +52,7 @@ public class HowToPlayFragment extends Fragment {
         MaterialToolbar toolbar = view.findViewById(R.id.topAppBar);
 
         ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
-        ((AppCompatActivity) requireActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Objects.requireNonNull(((AppCompatActivity) requireActivity()).getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
 
         toolbar.setNavigationOnClickListener(v -> {
             // Handle the back button event
