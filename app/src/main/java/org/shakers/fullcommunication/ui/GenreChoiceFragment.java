@@ -18,6 +18,15 @@ import org.shakers.fullcommunication.R;
 
 import java.util.Objects;
 
+/**
+ * ジャンル選択画面のFragment
+ * <p>ジャンル選択画面です。</p>
+ * 画面遷移の流れ:
+ * <br>
+ * {@link TitleFragment} -> GenreChoiceFragment
+ * <br>
+ * GenreChoiceFragment -> {@link TopicFragment}
+ */
 public class GenreChoiceFragment extends Fragment {
     public GenreChoiceFragment() {
         // Required empty public constructor

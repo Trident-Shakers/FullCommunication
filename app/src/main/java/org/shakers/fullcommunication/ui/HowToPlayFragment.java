@@ -31,6 +31,15 @@ class ButtonResources {
     }
 }
 
+/**
+ * プレイ方法画面のFragment
+ * <p>プレイ方法を説明する画面です。</p>
+ * 画面遷移の流れ:
+ * <br>
+ * {@link TitleFragment} -> HowToPlayFragment
+ * <br>
+ * HowToPlayFragment -> {@link TopicFragment}
+ */
 public class HowToPlayFragment extends Fragment {
     private final Map<Integer, ButtonResources> buttonResourcesMap = new HashMap<>();
 

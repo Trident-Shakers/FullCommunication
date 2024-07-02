@@ -11,8 +11,18 @@ import androidx.fragment.app.Fragment;
 
 import org.shakers.fullcommunication.R;
 
+/**
+ * タイトル画面のFragment
+ * <p>ジャンル選択画面に遷移するボタンを配置しています。</p>
+ * 画面遷移の流れ:
+ * <br>
+ * TitleFragment -> {@link GenreChoiceFragment}
+ * <br>
+ * TitleFragment -> {@link HowToPlayFragment}
+ * <br>
+ * {@link ResultFragment} -> TitleFragment
+ */
 public class TitleFragment extends Fragment {
-
     public TitleFragment() {
     }
 
