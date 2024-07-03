@@ -12,7 +12,6 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/border"
-
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,7 +26,7 @@
             android:id="@+id/topic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="長く話した話題ランキング"
+            android:text="@string/result_rankingDesc"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="20sp"
@@ -38,6 +37,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintVertical_bias="0.1"
             app:layout_constraintHorizontal_bias="0.5" />
+
         <!--話題ランキング1位-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ranking_first_layout"
@@ -53,7 +53,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/ranking_first"
-                android:text="1"
+                android:text="@string/one"
                 android:textStyle="bold"
                 android:textSize="25sp"
                 android:textColor="#ffd700"
@@ -68,7 +68,7 @@
                 android:id="@+id/ranking_first_topic"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="-------------------"
+                android:text="@string/result_nonData"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:textColor="#696969"
@@ -98,7 +98,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/ranking_second"
-                android:text="2"
+                android:text="@string/two"
                 android:textStyle="bold"
                 android:textSize="25sp"
                 android:textColor="#c0c0c0"
@@ -113,7 +113,7 @@
                 android:id="@+id/ranking_second_topic"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="-------------------"
+                android:text="@string/result_nonData"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:textColor="#696969"
@@ -127,6 +127,7 @@
                 app:layout_constraintHorizontal_bias="0.3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <!--話題ランキング3位-->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/ranking_third_layout"
             android:layout_width="match_parent"
@@ -142,7 +143,7 @@
                 android:id="@+id/ranking_third"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="3"
+                android:text="@string/three"
                 android:textColor="#ac6b25"
                 android:textSize="25sp"
                 android:textStyle="bold"
@@ -157,7 +158,7 @@
                 android:id="@+id/ranking_third_topic"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="-------------------"
+                android:text="@string/result_nonData"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="#696969"
@@ -172,10 +173,10 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         <ImageView
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:contentDescription="@string/result_imageDesc"
             android:src="@drawable/sappari"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -185,20 +186,17 @@
             app:layout_constraintTop_toBottomOf="@+id/ranking_third_layout"
             app:layout_constraintVertical_bias="0.5" />
 
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
-        android:id="@+id/debug_button"
+        android:id="@+id/back_to_title_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="タイトルに戻る"
+        android:text="@string/result_backToTitle"
         android:textSize="30sp"
         android:textStyle="bold"
         android:fontFamily="@font/roboto"
         android:textColor="@color/white"
-
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHeight_default="percent"
@@ -206,4 +204,5 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintWidth_default="percent"
         app:layout_constraintVertical_bias="0.85" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

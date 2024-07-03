@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import org.shakers.fullcommunication.R;
@@ -37,17 +38,20 @@ public class ResultFragment extends Fragment {
         TextView firstPlace = view.findViewById(R.id.ranking_first_topic);
         TextView secondPlace = view.findViewById(R.id.ranking_second_topic);
         TextView thirdPlace = view.findViewById(R.id.ranking_third_topic);
+        Button endButton = view.findViewById(R.id.back_to_title_button);
 
-        // トピックと時間の書かれた文字列を取得
-        view.getContext();
-        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("topic_time_count_list", Context.MODE_PRIVATE);
-        String value = sharedPreferences.getString("topic_time_count_list", null);
+        endButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clearSharedPreferences();
+                ((MainActivity) requireActivity()).loadFragment(new TitleFragment());
+            }
+        });
 
-        setPlace(value, firstPlace, secondPlace, thirdPlace);
+        setPlace(getTopicTime(), firstPlace, secondPlace, thirdPlace);
 
         return view;
     }
-
 
     /**
      * 話された時間が長い順に話題をTextViewにセットします。
@@ -77,5 +81,26 @@ public class ResultFragment extends Fragment {
             secondPlace.setText(list.get(1).getKey());
             thirdPlace.setText(list.get(2).getKey());
         }
+    }
+
+    /**
+     * SharedPreferencesの"topic_time_count_list"に<br>
+     * 保存されているデータを取得します。
+     *
+     * @return Topic-Time,Topic-Time...の形式で記述されている文字列
+     */
+    private String getTopicTime() {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("topic_time_count_list", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("topic_time_count_list", null);
+    }
+
+    /**
+     * SharedPreferencesに保存されているデータを削除します。
+     */
+    private void clearSharedPreferences() {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("topic_time_count_list", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
     }
 }

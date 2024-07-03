@@ -2,9 +2,12 @@
     <string name="app_name">FullCommunication</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="one">①</string>
-    <string name="two">②</string>
-    <string name="three">③</string>
+    <string name="one">1</string>
+    <string name="two">2</string>
+    <string name="three">3</string>
+    <string name="htp_one">①</string>
+    <string name="htp_two">②</string>
+    <string name="htp_three">③</string>
     <string name="htp_genreTips">話したいジャンルを選択しよう！</string>
     <string name="htp_topicTips">振って話題を出そう！</string>
     <string name="htp_talkTips">出された話題について話そう！</string>
@@ -12,4 +15,8 @@
     <string name="title_start">はじめる</string>
     <string name="title_how_to_play">遊び方</string>
     <string name="title_app_logo_description">フルコミュニケーションのアプリロゴ</string>
+    <string name="result_rankingDesc">長く話した話題ランキング</string>
+    <string name="result_backToTitle">タイトルに戻る</string>
+    <string name="result_imageDesc">楽しいことがあって話すものの全然通じてないひよこのイラスト</string>
+    <string name="result_nonData">-------------------</string>
 </resources>
