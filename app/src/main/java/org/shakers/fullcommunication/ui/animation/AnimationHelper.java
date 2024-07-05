@@ -2,6 +2,7 @@ package org.shakers.fullcommunication.ui.animation;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.util.Log;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
@@ -10,14 +11,23 @@ public class AnimationHelper {
 
     private float currentScale = 1.0f;
     private ValueAnimator debugAnimator;
+    private ValueAnimator fasterAnimator;
+    final long MIDDLE_DURATION = 5000;
+    final long FASTER_DURATION = 500;
+    final float MAX_SCALE = 5.0f;
+
 
     public void startDebugAnimation(FrameLayout frameLayout) {
         currentScale = frameLayout.getScaleX();
         if (debugAnimator != null && debugAnimator.isRunning()) {
             debugAnimator.cancel();
         }
-        debugAnimator = ValueAnimator.ofFloat(currentScale, 5.0f);
-        debugAnimator.setDuration(5000);
+        if(fasterAnimator != null && fasterAnimator.isRunning()) {
+            fasterAnimator.cancel();
+        }
+        debugAnimator = ValueAnimator.ofFloat(currentScale, MAX_SCALE);
+        float middle_duration = MIDDLE_DURATION/MAX_SCALE*(MAX_SCALE-currentScale);
+        debugAnimator.setDuration((long) middle_duration);
 
         debugAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -32,7 +42,7 @@ public class AnimationHelper {
             @Override
             public void onAnimationEnd(@NonNull Animator animation) {
                 ValueAnimator shrinkAnimator = ValueAnimator.ofFloat(5.0f, 1.0f);
-                shrinkAnimator.setDuration(500);
+                shrinkAnimator.setDuration(FASTER_DURATION);
                 shrinkAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(@NonNull ValueAnimator animation) {
@@ -58,13 +68,16 @@ public class AnimationHelper {
 
     public void startFasterAnimation(FrameLayout frameLayout) {
         currentScale = frameLayout.getScaleX();
-        ValueAnimator fasterAnimator = ValueAnimator.ofFloat(currentScale, 5.0f);
-        fasterAnimator.setDuration(500);
+        fasterAnimator = ValueAnimator.ofFloat(currentScale, MAX_SCALE);
+        float faster_duration = FASTER_DURATION/MAX_SCALE*(MAX_SCALE-currentScale);
+        fasterAnimator.setDuration((long) faster_duration);
 
-        if (debugAnimator != null) {
+        if (debugAnimator != null && debugAnimator.isRunning()) {
             debugAnimator.cancel();
         }
-        fasterAnimator.cancel();
+        if(fasterAnimator != null && fasterAnimator.isRunning()) {
+            fasterAnimator.cancel();
+        }
 
         fasterAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -79,7 +92,7 @@ public class AnimationHelper {
             @Override
             public void onAnimationEnd(@NonNull Animator animation) {
                 ValueAnimator shrinkAnimator = ValueAnimator.ofFloat(5.0f, 1.0f);
-                shrinkAnimator.setDuration(500);
+                shrinkAnimator.setDuration(FASTER_DURATION);
                 shrinkAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(@NonNull ValueAnimator animation) {
