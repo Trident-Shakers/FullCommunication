@@ -3,12 +3,14 @@ package org.shakers.fullcommunication.ui.animation;
 import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.util.Log;
+import android.view.animation.Animation;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 
 public class AnimationHelper {
 
+    OnAnimationEndListener listener;
     private float currentScale = 1.0f;
     private ValueAnimator debugAnimator;
     private ValueAnimator fasterAnimator;
@@ -16,6 +18,13 @@ public class AnimationHelper {
     final long FASTER_DURATION = 500;
     final float MAX_SCALE = 5.0f;
 
+    public interface OnAnimationEndListener {
+        void onAnimationEnd();
+    }
+
+    public AnimationHelper(OnAnimationEndListener listener){
+        this.listener = listener;
+    }
 
     public void startDebugAnimation(FrameLayout frameLayout) {
         currentScale = frameLayout.getScaleX();
@@ -50,6 +59,21 @@ public class AnimationHelper {
                         frameLayout.setScaleX(scale);
                         frameLayout.setScaleY(scale);
                     }
+                });
+                shrinkAnimator.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationEnd(@NonNull Animator animation) {
+                        listener.onAnimationEnd();
+                    }
+
+                    @Override
+                    public void onAnimationStart(@NonNull Animator animation) {}
+
+                    @Override
+                    public void onAnimationCancel(@NonNull Animator animation) {}
+
+                    @Override
+                    public void onAnimationRepeat(@NonNull Animator animation) {}
                 });
                 shrinkAnimator.start();
             }
@@ -100,6 +124,21 @@ public class AnimationHelper {
                         frameLayout.setScaleX(scale);
                         frameLayout.setScaleY(scale);
                     }
+                });
+                shrinkAnimator.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationEnd(@NonNull Animator animation) {
+                        listener.onAnimationEnd();
+                    }
+
+                    @Override
+                    public void onAnimationStart(@NonNull Animator animation) {}
+
+                    @Override
+                    public void onAnimationCancel(@NonNull Animator animation) {}
+
+                    @Override
+                    public void onAnimationRepeat(@NonNull Animator animation) {}
                 });
                 shrinkAnimator.start();
             }

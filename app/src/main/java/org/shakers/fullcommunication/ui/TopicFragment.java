@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import org.shakers.fullcommunication.R;
 import org.shakers.fullcommunication.data.TopicCountData;
 import org.shakers.fullcommunication.ui.animation.AnimationHelper;
+import org.w3c.dom.Text;
 
 import java.util.List;
 
@@ -25,6 +26,15 @@ public class TopicFragment extends Fragment {
     private int debugButtonClickCount = 0;
     private long debugButtonPressTime = 0;
     private long finishButtonPressTime = 0;
+    private TextView topicText;
+
+    private final AnimationHelper.OnAnimationEndListener onAnimationEndListener = new AnimationHelper.OnAnimationEndListener() {
+        @Override
+        public void onAnimationEnd() {
+            // トピックを表示するロジックを更新
+            changeTopic(topicText);
+        }
+    };
 
     TopicCountData topicCountData;
     List<String> topicList;
@@ -36,7 +46,7 @@ public class TopicFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        animationHelper = new AnimationHelper();
+        animationHelper = new AnimationHelper(onAnimationEndListener);
     }
 
     @Override
@@ -58,7 +68,7 @@ public class TopicFragment extends Fragment {
             }
         });
 
-        TextView topicText = view.findViewById(R.id.topic);
+        topicText = view.findViewById(R.id.topic);
         topicCountData = new TopicCountData(requireActivity());
         topicList = topicCountData.getTopicList();
 
