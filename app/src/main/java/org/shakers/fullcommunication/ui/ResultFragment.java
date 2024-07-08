@@ -76,9 +76,24 @@ public class ResultFragment extends Fragment {
             List<Map.Entry<String, Integer>> list = new ArrayList<>(map.entrySet());
             list.sort(Map.Entry.<String, Integer>comparingByValue().reversed());
 
-            firstPlace.setText(list.get(0).getKey());
-            secondPlace.setText(list.get(1).getKey());
-            thirdPlace.setText(list.get(2).getKey());
+            //switch文でスライスした話題が3つ未満の場合の処理を追加
+            switch (list.size()) {
+                case 1:
+                    firstPlace.setText(list.get(0).getKey());
+                    secondPlace.setText("-------------------");
+                    thirdPlace.setText("-------------------");
+                    break;
+                case 2:
+                    firstPlace.setText(list.get(0).getKey());
+                    secondPlace.setText(list.get(1).getKey());
+                    thirdPlace.setText("-------------------");
+                    break;
+                default:
+                    firstPlace.setText(list.get(0).getKey());
+                    secondPlace.setText(list.get(1).getKey());
+                    thirdPlace.setText(list.get(2).getKey());
+                    break;
+            }
         }
     }
 
