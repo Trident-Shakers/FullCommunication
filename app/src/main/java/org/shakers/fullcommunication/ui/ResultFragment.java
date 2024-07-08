@@ -3,14 +3,13 @@ package org.shakers.fullcommunication.ui;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import org.shakers.fullcommunication.R;
 
@@ -56,13 +55,13 @@ public class ResultFragment extends Fragment {
     /**
      * 話された時間が長い順に話題をTextViewにセットします。
      * <p>
-     *     Topic-Time,Topic-Time...の形式で記述されている文字列を受け取ります。
+     * Topic-Time,Topic-Time...の形式で記述されている文字列を受け取ります。
      * </p>
      *
-     * @param value トピックと時間の書かれた文字列
-     * @param firstPlace １位のTextView
+     * @param value       トピックと時間の書かれた文字列
+     * @param firstPlace  １位のTextView
      * @param secondPlace ２位のTextView
-     * @param thirdPlace ３位のTextView
+     * @param thirdPlace  ３位のTextView
      */
     private void setPlace(String value, TextView firstPlace, TextView secondPlace, TextView thirdPlace) {
         if (value != null) {
@@ -98,7 +97,12 @@ public class ResultFragment extends Fragment {
      * SharedPreferencesに保存されているデータを削除します。
      */
     private void clearSharedPreferences() {
-        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("topic_time_count_list", Context.MODE_PRIVATE);
+        clearSharedPreferencesByName("DATA");
+        clearSharedPreferencesByName("topic_time_count_list");
+    }
+
+    private void clearSharedPreferencesByName(String name) {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences(name, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
