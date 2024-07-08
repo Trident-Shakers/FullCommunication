@@ -2,6 +2,7 @@ package org.shakers.fullcommunication.ui;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,13 +16,14 @@ import androidx.fragment.app.Fragment;
 
 import org.shakers.fullcommunication.R;
 import org.shakers.fullcommunication.data.TopicCountData;
+import org.shakers.fullcommunication.sensor.ShakeDetector;
 import org.shakers.fullcommunication.ui.animation.AnimationHelper;
-import org.w3c.dom.Text;
 
 import java.util.List;
 
 public class TopicFragment extends Fragment {
 
+    private ShakeDetector shakeDetector;
     private AnimationHelper animationHelper;
     private int debugButtonClickCount = 0;
     private long debugButtonPressTime = 0;
@@ -61,6 +63,20 @@ public class TopicFragment extends Fragment {
         Button finishButton = view.findViewById(R.id.debug_finish_button);
         FrameLayout frameLayout = view.findViewById(R.id.frameLayout);
 
+        shakeDetector = new ShakeDetector(new ShakeDetector.OnShakeListener() {
+            @Override
+            public void onShake() {
+                // シェイク検知時の処理
+                animationHelper.startFasterAnimation(frameLayout);
+            }
+
+            @Override
+            public void unShake() {
+                // シェイク解除時の処理
+                animationHelper.startNormalAnimation(frameLayout);
+            }
+        });
+
         mButtonFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,7 +98,7 @@ public class TopicFragment extends Fragment {
         debugButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                animationHelper.startDebugAnimation(frameLayout);
+                animationHelper.startNormalAnimation(frameLayout);
             }
         });
 
@@ -102,6 +118,7 @@ public class TopicFragment extends Fragment {
 
         return view;
     }
+
     private void TopicTimeData(String topic, long time) {
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("topic_time_count_list", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -117,19 +134,19 @@ public class TopicFragment extends Fragment {
         editor.apply();
     }
 
-    private void changeTopic(TextView tv){
+    private void changeTopic(TextView tv) {
         // 最初にdebugButtonが押された時刻を記録
         if (debugButtonClickCount == 0) {
             debugButtonPressTime = System.currentTimeMillis();
         }
         // トピックを表示するロジックを更新
-        if(debugButtonClickCount < topicList.size()){
+        if (debugButtonClickCount < topicList.size()) {
             tv.setText(topicList.get(debugButtonClickCount));
             debugButtonClickCount++;
         }
     }
 
-    private void saveTopicCount(TextView tv){
+    private void saveTopicCount(TextView tv) {
         if (debugButtonClickCount > 0) { // debugButtonが少なくとも一度は押されていることを確認
             finishButtonPressTime = System.currentTimeMillis();
             long elapsedTime = finishButtonPressTime - debugButtonPressTime;
@@ -141,5 +158,19 @@ public class TopicFragment extends Fragment {
                 TopicTimeData(topicList.get(debugButtonClickCount - 2), elapsedTime);
             }
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        SensorManager sensorManager = (SensorManager) requireActivity().getSystemService(Context.SENSOR_SERVICE);
+        shakeDetector.start(sensorManager); // ShakeDetector を開始
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        SensorManager sensorManager = (SensorManager) requireActivity().getSystemService(Context.SENSOR_SERVICE);
+        sensorManager.unregisterListener(shakeDetector); // リスナーの登録解除
     }
 }
