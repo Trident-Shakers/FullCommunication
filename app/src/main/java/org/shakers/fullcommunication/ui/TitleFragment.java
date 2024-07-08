@@ -34,6 +34,9 @@ public class TitleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_title, container, false);
+        // Title描画時にSharedPreferencesをクリア
+        ((MainActivity) requireActivity()).resetAllPreferences();
+
         //Fragmentの場合
         Button startButton = view.findViewById(R.id.button_start);
         startButton.setOnClickListener(v -> ((MainActivity) requireActivity()).loadFragment(new GenreChoiceFragment()));
