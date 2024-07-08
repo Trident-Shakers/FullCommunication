@@ -2,6 +2,7 @@ package org.shakers.fullcommunication.ui.animation;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.content.Context;
 import android.util.Log;
 import android.widget.FrameLayout;
 
@@ -15,7 +16,6 @@ public class AnimationHelper {
     final long MIDDLE_DURATION = 5000;
     final long FASTER_DURATION = 500;
     final float MAX_SCALE = 5.0f;
-
 
     public void startDebugAnimation(FrameLayout frameLayout) {
         currentScale = frameLayout.getScaleX();
@@ -51,6 +51,24 @@ public class AnimationHelper {
                         frameLayout.setScaleY(scale);
                     }
                 });
+                shrinkAnimator.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationEnd(@NonNull Animator animation) {
+                        Log.d("AnimationHelper", "Shrink animation ended");
+                        // ここで話題を変更する
+
+                    }
+
+                    @Override
+                    public void onAnimationStart(@NonNull Animator animation) {
+                        Log.d("AnimationHelper", "Shrink animation started");
+                    }
+                    @Override
+                    public void onAnimationCancel(@NonNull Animator animation) {}
+                    @Override
+                    public void onAnimationRepeat(@NonNull Animator animation) {}
+                });
+
                 shrinkAnimator.start();
             }
 
@@ -101,6 +119,25 @@ public class AnimationHelper {
                         frameLayout.setScaleY(scale);
                     }
                 });
+
+                shrinkAnimator.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationEnd(@NonNull Animator animation) {
+                        Log.d("AnimationHelper", "Shrink animation ended");
+                        // ここで話題を変更する
+
+                    }
+
+                    @Override
+                    public void onAnimationStart(@NonNull Animator animation) {
+                        Log.d("AnimationHelper", "Shrink animation started");
+                    }
+                    @Override
+                    public void onAnimationCancel(@NonNull Animator animation) {}
+                    @Override
+                    public void onAnimationRepeat(@NonNull Animator animation) {}
+                });
+
                 shrinkAnimator.start();
             }
 
