@@ -44,6 +44,8 @@ public class TopicFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_topic, container, false);
         Button mButtonFinish = view.findViewById(R.id.finish_button);
         Button debugButton = view.findViewById(R.id.debug_button);
+        Button fasterButton = view.findViewById(R.id.debug_faster_button);
+        Button debugStartButton = view.findViewById(R.id.debug_start_button);
         Button finishButton = view.findViewById(R.id.debug_finish_button);
         FrameLayout frameLayout = view.findViewById(R.id.frameLayout);
 
@@ -57,7 +59,7 @@ public class TopicFragment extends Fragment {
         TextView topicText = view.findViewById(R.id.topic);
         String[] topicValues = getTopicValues();
 
-        debugButton.setOnClickListener(new View.OnClickListener() {
+        debugStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 最初にdebugButtonが押された時刻を記録
@@ -70,6 +72,20 @@ public class TopicFragment extends Fragment {
                     topicText.setText(topicValue);
                     debugButtonClickCount++;
                 }
+            }
+        });
+
+        debugButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animationHelper.startDebugAnimation(frameLayout);
+            }
+        });
+
+        fasterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                animationHelper.startFasterAnimation(frameLayout);
             }
         });
 
