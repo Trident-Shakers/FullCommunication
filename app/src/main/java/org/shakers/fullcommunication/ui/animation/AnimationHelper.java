@@ -2,8 +2,6 @@ package org.shakers.fullcommunication.ui.animation;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
-import android.util.Log;
-import android.view.animation.Animation;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
@@ -12,7 +10,9 @@ public class AnimationHelper {
 
     OnAnimationEndListener listener;
     private float currentScale = 1.0f;
-    private ValueAnimator debugAnimator;
+    private ValueAnimator normalSpeedAnimator;
+    private boolean animationCanceled_normal = false;
+    private boolean animationCanceled_faster = false;
     private ValueAnimator fasterAnimator;
     final long MIDDLE_DURATION = 5000;
     final long FASTER_DURATION = 500;
@@ -22,23 +22,24 @@ public class AnimationHelper {
         void onAnimationEnd();
     }
 
-    public AnimationHelper(OnAnimationEndListener listener){
+    public AnimationHelper(OnAnimationEndListener listener) {
         this.listener = listener;
     }
 
-    public void startDebugAnimation(FrameLayout frameLayout) {
+    public void startNormalAnimation(FrameLayout frameLayout) {
         currentScale = frameLayout.getScaleX();
-        if (debugAnimator != null && debugAnimator.isRunning()) {
-            debugAnimator.cancel();
+        if (normalSpeedAnimator != null && normalSpeedAnimator.isRunning()) {
+            normalSpeedAnimator.cancel();
         }
-        if(fasterAnimator != null && fasterAnimator.isRunning()) {
+        if (fasterAnimator != null && fasterAnimator.isRunning()) {
             fasterAnimator.cancel();
         }
-        debugAnimator = ValueAnimator.ofFloat(currentScale, MAX_SCALE);
-        float middle_duration = MIDDLE_DURATION/MAX_SCALE*(MAX_SCALE-currentScale);
-        debugAnimator.setDuration((long) middle_duration);
+        normalSpeedAnimator = ValueAnimator.ofFloat(currentScale, MAX_SCALE);
 
-        debugAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        float middle_duration = MIDDLE_DURATION / MAX_SCALE * (MAX_SCALE - currentScale);
+        normalSpeedAnimator.setDuration((long) middle_duration);
+
+        normalSpeedAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(@NonNull ValueAnimator animation) {
                 float scale = (float) animation.getAnimatedValue();
@@ -47,7 +48,7 @@ public class AnimationHelper {
             }
         });
 
-        debugAnimator.addListener(new Animator.AnimatorListener() {
+        normalSpeedAnimator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationEnd(@NonNull Animator animation) {
                 ValueAnimator shrinkAnimator = ValueAnimator.ofFloat(5.0f, 1.0f);
@@ -67,39 +68,47 @@ public class AnimationHelper {
                     }
 
                     @Override
-                    public void onAnimationStart(@NonNull Animator animation) {}
+                    public void onAnimationStart(@NonNull Animator animation) {
+                    }
 
                     @Override
-                    public void onAnimationCancel(@NonNull Animator animation) {}
+                    public void onAnimationCancel(@NonNull Animator animation) {
+                    }
 
                     @Override
-                    public void onAnimationRepeat(@NonNull Animator animation) {}
+                    public void onAnimationRepeat(@NonNull Animator animation) {
+                    }
                 });
-                shrinkAnimator.start();
+                if (!animationCanceled_normal) shrinkAnimator.start();
             }
 
             @Override
-            public void onAnimationStart(@NonNull Animator animation) {}
+            public void onAnimationStart(@NonNull Animator animation) {
+                animationCanceled_normal = false;
+            }
 
             @Override
-            public void onAnimationCancel(@NonNull Animator animation) {}
+            public void onAnimationCancel(@NonNull Animator animation) {
+                animationCanceled_normal = true;
+            }
 
             @Override
-            public void onAnimationRepeat(@NonNull Animator animation) {}
+            public void onAnimationRepeat(@NonNull Animator animation) {
+            }
         });
-        debugAnimator.start();
+        normalSpeedAnimator.start();
     }
 
     public void startFasterAnimation(FrameLayout frameLayout) {
         currentScale = frameLayout.getScaleX();
         fasterAnimator = ValueAnimator.ofFloat(currentScale, MAX_SCALE);
-        float faster_duration = FASTER_DURATION/MAX_SCALE*(MAX_SCALE-currentScale);
+        float faster_duration = FASTER_DURATION / MAX_SCALE * (MAX_SCALE - currentScale);
         fasterAnimator.setDuration((long) faster_duration);
 
-        if (debugAnimator != null && debugAnimator.isRunning()) {
-            debugAnimator.cancel();
+        if (normalSpeedAnimator != null && normalSpeedAnimator.isRunning()) {
+            normalSpeedAnimator.cancel();
         }
-        if(fasterAnimator != null && fasterAnimator.isRunning()) {
+        if (fasterAnimator != null && fasterAnimator.isRunning()) {
             fasterAnimator.cancel();
         }
 
@@ -132,25 +141,33 @@ public class AnimationHelper {
                     }
 
                     @Override
-                    public void onAnimationStart(@NonNull Animator animation) {}
+                    public void onAnimationStart(@NonNull Animator animation) {
+                    }
 
                     @Override
-                    public void onAnimationCancel(@NonNull Animator animation) {}
+                    public void onAnimationCancel(@NonNull Animator animation) {
+                    }
 
                     @Override
-                    public void onAnimationRepeat(@NonNull Animator animation) {}
+                    public void onAnimationRepeat(@NonNull Animator animation) {
+                    }
                 });
-                shrinkAnimator.start();
+                if (!animationCanceled_faster) shrinkAnimator.start();
             }
 
             @Override
-            public void onAnimationStart(@NonNull Animator animation) {}
+            public void onAnimationStart(@NonNull Animator animation) {
+                animationCanceled_faster = false;
+            }
 
             @Override
-            public void onAnimationCancel(@NonNull Animator animation) {}
+            public void onAnimationCancel(@NonNull Animator animation) {
+                animationCanceled_faster = true;
+            }
 
             @Override
-            public void onAnimationRepeat(@NonNull Animator animation) {}
+            public void onAnimationRepeat(@NonNull Animator animation) {
+            }
         });
         fasterAnimator.start();
     }

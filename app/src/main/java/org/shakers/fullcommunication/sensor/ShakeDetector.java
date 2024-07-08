@@ -18,7 +18,8 @@ import android.util.Log;
  * </p>
  */
 public class ShakeDetector implements SensorEventListener {
-    private static final float SHAKE_THRESHOLD = 15.0f;
+    private static final float SHAKE_THRESHOLD = 20.0f;
+    private static final int SHAKE_WAIT_TIME_MS_SHORT = 100;
     private static final int SHAKE_WAIT_TIME_MS = 1000;
     private static final int LOG_INTERVAL = 1000;
 
@@ -30,6 +31,8 @@ public class ShakeDetector implements SensorEventListener {
 
     public interface OnShakeListener {
         void onShake();
+
+        void unShake();
     }
 
     public ShakeDetector(OnShakeListener listener) {
@@ -66,7 +69,7 @@ public class ShakeDetector implements SensorEventListener {
 
             mLastLogTimestamp = now;
         }
-        if ((now - mShakeTimestamp) > SHAKE_WAIT_TIME_MS) {
+        if ((now - mShakeTimestamp) > SHAKE_WAIT_TIME_MS_SHORT) {
             float x = event.values[0];
             float y = event.values[1];
             float z = event.values[2];
@@ -75,14 +78,12 @@ public class ShakeDetector implements SensorEventListener {
             float deltaY = y - mLastY;
             float deltaZ = z - mLastZ;
 
-            float delta = (float) Math.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ);
-
-
-            if (delta > SHAKE_THRESHOLD) {
+            if (deltaX > SHAKE_THRESHOLD || deltaY > SHAKE_THRESHOLD || deltaZ > SHAKE_THRESHOLD) {
                 mShakeTimestamp = now;
                 mListener.onShake();
+            } else {
+                mListener.unShake();
             }
-
 
             mLastX = x;
             mLastY = y;
@@ -93,5 +94,12 @@ public class ShakeDetector implements SensorEventListener {
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
         // センサーの精度が変更された場合の処理（必要な場合）
+    }
+
+    public void start(SensorManager sensorManager) {
+        Sensor sensor = sensorManager.getDefaultSensor(Sensor.TYPE_LINEAR_ACCELERATION);
+        if (sensor != null) {
+            sensorManager.registerListener(this, sensor, SensorManager.SENSOR_DELAY_NORMAL);
+        }
     }
 }
