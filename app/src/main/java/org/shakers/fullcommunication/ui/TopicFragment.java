@@ -3,22 +3,41 @@ package org.shakers.fullcommunication.ui;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
+
+import androidx.fragment.app.Fragment;
 
 import org.shakers.fullcommunication.R;
-import org.shakers.fullcommunication.data.MockTopicTimeData;
+import org.shakers.fullcommunication.data.TopicCountData;
 import org.shakers.fullcommunication.ui.animation.AnimationHelper;
+import org.w3c.dom.Text;
+
+import java.util.List;
 
 public class TopicFragment extends Fragment {
 
     private AnimationHelper animationHelper;
+    private int debugButtonClickCount = 0;
+    private long debugButtonPressTime = 0;
+    private long finishButtonPressTime = 0;
+    private TextView topicText;
+
+    private final AnimationHelper.OnAnimationEndListener onAnimationEndListener = new AnimationHelper.OnAnimationEndListener() {
+        @Override
+        public void onAnimationEnd() {
+            // トピックを表示するロジックを更新
+            changeTopic(topicText);
+        }
+    };
+
+    TopicCountData topicCountData;
+    List<String> topicList;
 
     public TopicFragment() {
         // Required empty public constructor
@@ -27,7 +46,7 @@ public class TopicFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        animationHelper = new AnimationHelper();
+        animationHelper = new AnimationHelper(onAnimationEndListener);
     }
 
     @Override
@@ -38,19 +57,25 @@ public class TopicFragment extends Fragment {
         Button mButtonFinish = view.findViewById(R.id.finish_button);
         Button debugButton = view.findViewById(R.id.debug_button);
         Button fasterButton = view.findViewById(R.id.debug_faster_button);
+        Button debugStartButton = view.findViewById(R.id.debug_start_button);
+        Button finishButton = view.findViewById(R.id.debug_finish_button);
         FrameLayout frameLayout = view.findViewById(R.id.frameLayout);
 
         mButtonFinish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MockTopicTimeData topicCountMockData = new MockTopicTimeData();
-                requireActivity();
-                SharedPreferences.Editor editor = requireActivity().getSharedPreferences("topic_time_count_list", Context.MODE_PRIVATE).edit();
-                Log.d("TopicFragment", topicCountMockData.getTopicDurationString());
-                editor.putString("topic_time_count_list", topicCountMockData.getTopicDurationString());
-                editor.apply();
-
                 ((MainActivity) requireActivity()).loadFragment(new ResultFragment());
+            }
+        });
+
+        topicText = view.findViewById(R.id.topic);
+        topicCountData = new TopicCountData(requireActivity());
+        topicList = topicCountData.getTopicList();
+
+        debugStartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeTopic(topicText);
             }
         });
 
@@ -68,6 +93,53 @@ public class TopicFragment extends Fragment {
             }
         });
 
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveTopicCount(topicText);
+            }
+        });
+
         return view;
+    }
+    private void TopicTimeData(String topic, long time) {
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("topic_time_count_list", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String value = sharedPreferences.getString("topic_time_count_list", null);
+        //topic-timeの形式でStringに格納
+        if (value != null) {
+            value = value + "," + topic + "-" + time;
+        } else {
+            value = topic + "-" + time;
+        }
+        //作ったStringをSharedpreferencesに格納
+        editor.putString("topic_time_count_list", value);
+        editor.apply();
+    }
+
+    private void changeTopic(TextView tv){
+        // 最初にdebugButtonが押された時刻を記録
+        if (debugButtonClickCount == 0) {
+            debugButtonPressTime = System.currentTimeMillis();
+        }
+        // トピックを表示するロジックを更新
+        if(debugButtonClickCount < topicList.size()){
+            tv.setText(topicList.get(debugButtonClickCount));
+            debugButtonClickCount++;
+        }
+    }
+
+    private void saveTopicCount(TextView tv){
+        if (debugButtonClickCount > 0) { // debugButtonが少なくとも一度は押されていることを確認
+            finishButtonPressTime = System.currentTimeMillis();
+            long elapsedTime = finishButtonPressTime - debugButtonPressTime;
+            Log.d("TopicFragment", "Elapsed Time: " + elapsedTime + "ms");
+            // トピック表示を空白にする
+            tv.setText("");
+            // 時間を保存するロジックを呼び出し
+            if (debugButtonClickCount > 1) { // debugButtonが一度以上押された後にfinishButtonが押された場合
+                TopicTimeData(topicList.get(debugButtonClickCount - 2), elapsedTime);
+            }
+        }
     }
 }

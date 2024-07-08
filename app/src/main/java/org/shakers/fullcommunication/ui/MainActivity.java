@@ -1,5 +1,7 @@
 package org.shakers.fullcommunication.ui;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -15,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         // 初期画面はTitleFragmentを読み込む
         loadFragment(new TitleFragment());
 
@@ -40,5 +41,26 @@ public class MainActivity extends AppCompatActivity {
         transaction.commit();
     }
 
+    /**
+     * SharedPreferencesに保存されているデータを全て削除します。
+     */
+    void resetAllPreferences() {
+        clearSharedPreferences();
+    }
+
+    /**
+     * SharedPreferencesに保存されているデータを削除します。
+     */
+    private void clearSharedPreferences() {
+        clearSharedPreferencesByName("DATA");
+        clearSharedPreferencesByName("topic_time_count_list");
+    }
+
+    private void clearSharedPreferencesByName(String name) {
+        SharedPreferences sharedPreferences = getSharedPreferences(name, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
+    }
 
 }
