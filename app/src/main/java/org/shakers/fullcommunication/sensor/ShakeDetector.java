@@ -19,7 +19,7 @@ import android.util.Log;
  */
 public class ShakeDetector implements SensorEventListener {
     private static final float SHAKE_THRESHOLD = 20.0f;
-    private static final int SHAKE_WAIT_TIME_MS_SHORT = 100;
+    private static final int SHAKE_WAIT_TIME_MS_SHORT = 200;
     private static final int SHAKE_WAIT_TIME_MS = 1000;
     private static final int LOG_INTERVAL = 1000;
 

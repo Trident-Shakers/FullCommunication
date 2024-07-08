@@ -10,10 +10,11 @@ public class AnimationHelper {
 
     OnAnimationEndListener listener;
     private float currentScale = 1.0f;
+    private ValueAnimator shrinkAnimator;
     private ValueAnimator normalSpeedAnimator;
+    private ValueAnimator fasterAnimator;
     private boolean animationCanceled_normal = false;
     private boolean animationCanceled_faster = false;
-    private ValueAnimator fasterAnimator;
     final long MIDDLE_DURATION = 5000;
     final long FASTER_DURATION = 500;
     final float MAX_SCALE = 5.0f;
@@ -27,6 +28,9 @@ public class AnimationHelper {
     }
 
     public void startNormalAnimation(FrameLayout frameLayout) {
+        if (shrinkAnimator != null && shrinkAnimator.isRunning()) {
+            return;
+        }
         currentScale = frameLayout.getScaleX();
         if (normalSpeedAnimator != null && normalSpeedAnimator.isRunning()) {
             normalSpeedAnimator.cancel();
@@ -51,7 +55,7 @@ public class AnimationHelper {
         normalSpeedAnimator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationEnd(@NonNull Animator animation) {
-                ValueAnimator shrinkAnimator = ValueAnimator.ofFloat(5.0f, 1.0f);
+                shrinkAnimator = ValueAnimator.ofFloat(5.0f, 1.0f);
                 shrinkAnimator.setDuration(FASTER_DURATION);
                 shrinkAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
@@ -100,6 +104,9 @@ public class AnimationHelper {
     }
 
     public void startFasterAnimation(FrameLayout frameLayout) {
+        if (shrinkAnimator != null && shrinkAnimator.isRunning()) {
+            return;
+        }
         currentScale = frameLayout.getScaleX();
         fasterAnimator = ValueAnimator.ofFloat(currentScale, MAX_SCALE);
         float faster_duration = FASTER_DURATION / MAX_SCALE * (MAX_SCALE - currentScale);
@@ -124,7 +131,7 @@ public class AnimationHelper {
         fasterAnimator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationEnd(@NonNull Animator animation) {
-                ValueAnimator shrinkAnimator = ValueAnimator.ofFloat(5.0f, 1.0f);
+                shrinkAnimator = ValueAnimator.ofFloat(5.0f, 1.0f);
                 shrinkAnimator.setDuration(FASTER_DURATION);
                 shrinkAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
