@@ -19,4 +19,5 @@
     <string name="result_backToTitle">タイトルに戻る</string>
     <string name="result_imageDesc">楽しいことがあって話すものの全然通じてないひよこのイラスト</string>
     <string name="result_nonData">-------------------</string>
+    <string name="topic_NonGenreText">　ジャンル　</string>
 </resources>

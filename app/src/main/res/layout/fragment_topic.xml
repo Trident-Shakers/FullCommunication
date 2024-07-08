@@ -21,7 +21,12 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
+        app:layout_constraintVertical_bias="0.4" >
+
+
+    </FrameLayout>
+
+
 
     <Button
         android:id="@+id/debug_button"
@@ -74,7 +79,7 @@
         app:strokeWidth="3dp" />
 
     <TextView
-        android:id="@+id/topic_text"
+        android:id="@+id/topic_now_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/roboto"
@@ -88,5 +93,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.50" />
 
+
+    <TextView
+        android:id="@+id/topic_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:text="@string/topic_NonGenreText"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+
+        app:layout_constraintTop_toTopOf="@id/frameLayout"
+        app:layout_constraintBottom_toBottomOf="@id/frameLayout"
+        app:layout_constraintStart_toStartOf="@id/frameLayout"
+        app:layout_constraintEnd_toEndOf="@id/frameLayout"
+        app:layout_constraintVertical_bias="0.30"
+         />
+<!--  現在の話題を配置するTextViewを表示  -->
 
 </androidx.constraintlayout.widget.ConstraintLayout >
