@@ -15,7 +15,7 @@
         android:layout_width="304dp"
         android:layout_height="171dp"
         android:layout_marginTop="100dp"
-        android:contentDescription="@string/title_app_logo_description"
+        android:contentDescription="@string/title_imageview_logoDescription"
         android:src="@drawable/communication" />
 
     <Button
@@ -25,7 +25,7 @@
         android:layout_marginTop="200dp"
         android:textSize="30sp"
         android:backgroundTint="@color/primary_color"
-        android:text="@string/title_start"
+        android:text="@string/title_textview_start"
         android:textStyle="bold"
         android:textColor="@color/white" />
 
@@ -39,7 +39,7 @@
         android:backgroundTint="@color/white"
         app:strokeColor="@color/primary_color"
         app:strokeWidth="3dp"
-        android:text="@string/title_how_to_play"
+        android:text="@string/title_textview_htp"
         android:textSize="30sp"
         android:textColor="#00BFFF" />
 </LinearLayout>

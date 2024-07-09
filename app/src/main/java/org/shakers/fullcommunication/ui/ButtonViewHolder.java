@@ -1,8 +1,6 @@
 package org.shakers.fullcommunication.ui;
 
 import android.view.View;
-
-import android.widget.Button;
 import android.widget.ToggleButton;
 
 import androidx.recyclerview.widget.RecyclerView;

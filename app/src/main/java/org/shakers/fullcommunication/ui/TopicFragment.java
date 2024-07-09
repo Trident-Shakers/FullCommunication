@@ -25,7 +25,7 @@ import java.util.List;
 
 public class TopicFragment extends Fragment {
 
-    private class TopicTime {
+    private static class TopicTime {
         String topic;
         long time;
 
@@ -41,21 +41,11 @@ public class TopicFragment extends Fragment {
         public long getTime() {
             return time;
         }
-
-        public void setTopic(String topic) {
-            this.topic = topic;
-        }
-
-        public void setTime(long time) {
-            this.time = time;
-        }
     }
 
     private ShakeDetector shakeDetector;
     private AnimationHelper animationHelper;
     private int debugButtonClickCount = 0;
-    private final long debugButtonPressTime = 0;
-    private final long finishButtonPressTime = 0;
     private TextView topicText;
     private final ArrayList<TopicTime> topicTimeList = new ArrayList<>();
     private final ArrayList<Long> timeList = new ArrayList<>();
@@ -90,7 +80,6 @@ public class TopicFragment extends Fragment {
         Button debugButton = view.findViewById(R.id.debug_button);
         Button fasterButton = view.findViewById(R.id.debug_faster_button);
         Button debugStartButton = view.findViewById(R.id.debug_start_button);
-        Button finishButton = view.findViewById(R.id.debug_finish_button);
         FrameLayout frameLayout = view.findViewById(R.id.frameLayout);
 
         shakeDetector = new ShakeDetector(new ShakeDetector.OnShakeListener() {
@@ -163,7 +152,7 @@ public class TopicFragment extends Fragment {
         } else {
             value = topicTime.getTopic() + "-" + topicTime.getTime();
         }
-        //作ったStringをSharedpreferencesに格納
+        //作ったStringをSharedPreferencesに格納
         editor.putString("topic_time_count_list", value);
         editor.apply();
     }
