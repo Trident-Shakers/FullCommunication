@@ -35,11 +35,8 @@ jobs:
       - name: Build with Gradle
         run: ./gradlew assembleRelease
 
-      - name: List build outputs
-        run: ls -R app/build/outputs/
-
       - name: Upload Debug APK
         uses: actions/upload-artifact@v2
         with:
-          name: app-debug.apk
-          path: app/build/intermediates/apk/debug/app-debug.apk
+          name: app-release.apk
+          path: app/build/outputs/apk/release/app-release-unsigned.apk
