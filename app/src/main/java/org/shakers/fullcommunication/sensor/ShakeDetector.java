@@ -18,8 +18,7 @@ import android.util.Log;
  * </p>
  */
 public class ShakeDetector implements SensorEventListener {
-    private static final float SHAKE_THRESHOLD = 20.0f;
-    private static final int SHAKE_WAIT_TIME_MS_SHORT = 200;
+    private static final float SHAKE_THRESHOLD = 30.0f;
     private static final int SHAKE_WAIT_TIME_MS = 1000;
     private static final int LOG_INTERVAL = 1000;
 
@@ -69,7 +68,7 @@ public class ShakeDetector implements SensorEventListener {
 
             mLastLogTimestamp = now;
         }
-        if ((now - mShakeTimestamp) > SHAKE_WAIT_TIME_MS_SHORT) {
+        //if ((now - mShakeTimestamp) > SHAKE_WAIT_TIME_MS_SHORT) {
             float x = event.values[0];
             float y = event.values[1];
             float z = event.values[2];
@@ -88,7 +87,7 @@ public class ShakeDetector implements SensorEventListener {
             mLastX = x;
             mLastY = y;
             mLastZ = z;
-        }
+        //}
     }
 
     @Override
