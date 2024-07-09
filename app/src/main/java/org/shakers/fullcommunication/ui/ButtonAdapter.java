@@ -42,6 +42,24 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonViewHolder> {
             holder.button.setTextOn(buttonTexts[position]);
             holder.button.setTextOff(buttonTexts[position]);
         }
+        // 文字数に応じてフォントサイズを調整
+        switch (buttonTexts[position].length()) {
+            case 1:
+                holder.button.setTextSize(28);
+                break;
+            case 2:
+                holder.button.setTextSize(24);
+                break;
+            case 3:
+                holder.button.setTextSize(20);
+                break;
+            case 4:
+                holder.button.setTextSize(16);
+                break;
+            default:
+                holder.button.setTextSize(14);
+                break;
+        }
         // 必要に応じてクリックリスナーを設定する
         holder.button.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

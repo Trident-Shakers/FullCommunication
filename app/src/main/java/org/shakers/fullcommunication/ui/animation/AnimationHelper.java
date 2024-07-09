@@ -15,8 +15,9 @@ public class AnimationHelper {
     private ValueAnimator fasterAnimator;
     private boolean animationCanceled_normal = false;
     private boolean animationCanceled_faster = false;
-    final long MIDDLE_DURATION = 5000;
-    final long FASTER_DURATION = 500;
+    final long MIDDLE_DURATION = 180000;
+    final long SHRINK_DURATION = 500;
+    final long FASTER_DURATION = 1000;
     final float MAX_SCALE = 5.0f;
 
     public interface OnAnimationEndListener {
@@ -33,7 +34,7 @@ public class AnimationHelper {
         }
         currentScale = frameLayout.getScaleX();
         if (normalSpeedAnimator != null && normalSpeedAnimator.isRunning()) {
-            normalSpeedAnimator.cancel();
+            return;
         }
         if (fasterAnimator != null && fasterAnimator.isRunning()) {
             fasterAnimator.cancel();
@@ -56,7 +57,7 @@ public class AnimationHelper {
             @Override
             public void onAnimationEnd(@NonNull Animator animation) {
                 shrinkAnimator = ValueAnimator.ofFloat(5.0f, 1.0f);
-                shrinkAnimator.setDuration(FASTER_DURATION);
+                shrinkAnimator.setDuration(SHRINK_DURATION);
                 shrinkAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(@NonNull ValueAnimator animation) {
@@ -107,17 +108,18 @@ public class AnimationHelper {
         if (shrinkAnimator != null && shrinkAnimator.isRunning()) {
             return;
         }
+        if (normalSpeedAnimator != null && normalSpeedAnimator.isRunning()) {
+            normalSpeedAnimator.cancel();
+        }
+        if (fasterAnimator != null && fasterAnimator.isRunning()) {
+            return;
+        }
         currentScale = frameLayout.getScaleX();
         fasterAnimator = ValueAnimator.ofFloat(currentScale, MAX_SCALE);
         float faster_duration = FASTER_DURATION / MAX_SCALE * (MAX_SCALE - currentScale);
         fasterAnimator.setDuration((long) faster_duration);
 
-        if (normalSpeedAnimator != null && normalSpeedAnimator.isRunning()) {
-            normalSpeedAnimator.cancel();
-        }
-        if (fasterAnimator != null && fasterAnimator.isRunning()) {
-            fasterAnimator.cancel();
-        }
+
 
         fasterAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -132,7 +134,7 @@ public class AnimationHelper {
             @Override
             public void onAnimationEnd(@NonNull Animator animation) {
                 shrinkAnimator = ValueAnimator.ofFloat(5.0f, 1.0f);
-                shrinkAnimator.setDuration(FASTER_DURATION);
+                shrinkAnimator.setDuration(SHRINK_DURATION);
                 shrinkAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(@NonNull ValueAnimator animation) {
