@@ -80,6 +80,7 @@ public class ResultFragment extends Fragment {
             switch (list.size()) {
                 case 1:
                     firstPlace.setText(list.get(0).getKey());
+
                     secondPlace.setText("------------");
                     thirdPlace.setText("------------");
                     break;

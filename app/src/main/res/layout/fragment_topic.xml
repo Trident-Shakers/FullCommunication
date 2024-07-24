@@ -21,35 +21,7 @@
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4" />
-
-    <Button
-        android:id="@+id/debug_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="animation"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="percent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.56"
-        app:layout_constraintWidth_default="percent" />
-
-    <Button
-        android:id="@+id/debug_faster_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="faster!"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="percent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.62"
-        app:layout_constraintWidth_default="percent" />
+        app:layout_constraintVertical_bias="0.5" />
 
     <TextView
         android:id="@+id/topic"
@@ -62,33 +34,6 @@
         app:layout_constraintEnd_toEndOf="@+id/frameLayout"
         app:layout_constraintStart_toStartOf="@+id/frameLayout"
         app:layout_constraintTop_toTopOf="@+id/frameLayout" />
-
-    <Button
-        android:id="@+id/debug_start_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="話題提供"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="percent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.7"
-        app:layout_constraintWidth_default="percent" />
-
-    <Button
-        android:id="@+id/debug_finish_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="話題終了"
-
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="percent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.76"
-        app:layout_constraintWidth_default="percent" />
 
     <Button
         android:id="@+id/finish_button"
