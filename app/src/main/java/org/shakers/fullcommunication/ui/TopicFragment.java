@@ -77,9 +77,6 @@ public class TopicFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_topic, container, false);
         Button mButtonFinish = view.findViewById(R.id.finish_button);
-        Button debugButton = view.findViewById(R.id.debug_button);
-        Button fasterButton = view.findViewById(R.id.debug_faster_button);
-        Button debugStartButton = view.findViewById(R.id.debug_start_button);
         FrameLayout frameLayout = view.findViewById(R.id.frameLayout);
 
         shakeDetector = new ShakeDetector(new ShakeDetector.OnShakeListener() {

@@ -80,13 +80,13 @@ public class ResultFragment extends Fragment {
             switch (list.size()) {
                 case 1:
                     firstPlace.setText(list.get(0).getKey());
-                    secondPlace.setText("-------------------");
-                    thirdPlace.setText("-------------------");
+                    secondPlace.setText("--------------");
+                    thirdPlace.setText("--------------");
                     break;
                 case 2:
                     firstPlace.setText(list.get(0).getKey());
                     secondPlace.setText(list.get(1).getKey());
-                    thirdPlace.setText("-------------------");
+                    thirdPlace.setText("--------------");
                     break;
                 default:
                     firstPlace.setText(list.get(0).getKey());
