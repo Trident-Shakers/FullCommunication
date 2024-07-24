@@ -7,20 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.MainActivity">
 
-
-    <Button
-        android:id="@+id/debug_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/main_button_debug"
-        android:textSize="20sp"
-        android:textColor="@color/white"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:ignore="VisualLintOverlap" />
-
     <androidx.fragment.app.FragmentContainerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -25,7 +25,7 @@
                 android:minHeight="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
                 app:navigationIconTint="@color/primary_color"
-                app:title="遊び方説明"
+                app:title="使い方説明"
                 app:titleTextColor="@color/primary_color"
                 app:titleCentered="true" />
 

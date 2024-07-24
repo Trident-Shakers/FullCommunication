@@ -19,12 +19,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // 初期画面はTitleFragmentを読み込む
         loadFragment(new TitleFragment());
-
-        Button debugButton = findViewById(R.id.debug_button);
-        debugButton.setOnClickListener(v -> {
-            // DebugFragmentを読み込むようにする
-            loadFragment(new DebugFragment());
-        });
     }
 
     /**
