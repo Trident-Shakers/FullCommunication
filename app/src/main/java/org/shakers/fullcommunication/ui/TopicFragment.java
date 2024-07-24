@@ -114,28 +114,6 @@ public class TopicFragment extends Fragment {
         //話題の初期化
         changeTopic(topicText);
 
-        debugStartButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeTopic(topicText);
-            }
-        });
-
-        debugButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                animationHelper.startNormalAnimation(frameLayout);
-            }
-        });
-
-        fasterButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                animationHelper.startFasterAnimation(frameLayout);
-            }
-        });
-
-
         return view;
     }
 
