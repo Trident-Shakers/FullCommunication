@@ -42,7 +42,7 @@ class ButtonResources {
  */
 public class HowToPlayFragment extends Fragment {
     private final Map<Integer, ButtonResources> buttonResourcesMap = new HashMap<>();
-    private static final int[] BUTTON_IDS = {R.id.button1, R.id.button2, R.id.button3};
+    private static final int[] BUTTON_IDS = {R.id.button1, R.id.button2, R.id.button3, R.id.button4};
     private TextView numberTextView;
     private TextView tipsTextView;
     private ImageView tipsImageView;
@@ -70,7 +70,8 @@ public class HowToPlayFragment extends Fragment {
 
         buttonResourcesMap.put(R.id.button1, new ButtonResources(R.string.htp_button_one, R.string.htp_textview_genreTips, R.drawable.tips_genre));
         buttonResourcesMap.put(R.id.button2, new ButtonResources(R.string.htp_button_two, R.string.htp_textview_topicTips, R.drawable.tips_topic));
-        buttonResourcesMap.put(R.id.button3, new ButtonResources(R.string.htp_button_three, R.string.htp_textview_talkTips, R.drawable.tips_talk));
+        buttonResourcesMap.put(R.id.button3, new ButtonResources(R.string.htp_button_three, R.string.htp_textview_shakeTips, R.drawable.tips_shake));
+        buttonResourcesMap.put(R.id.button4, new ButtonResources(R.string.htp_button_four, R.string.htp_textview_talkTips, R.drawable.tips_talk));
 
         numberTextView = view.findViewById(R.id.number);
         tipsTextView = view.findViewById(R.id.tipsText);
