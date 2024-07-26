@@ -3,11 +3,14 @@
     <string name="one">1</string>
     <string name="two">2</string>
     <string name="three">3</string>
+    <string name="four">4</string>
     <string name="htp_button_one">①</string>
     <string name="htp_button_two">②</string>
     <string name="htp_button_three">③</string>
+    <string name="htp_button_four">④</string>
     <string name="htp_textview_genreTips">話したいジャンルを選択しよう！</string>
     <string name="htp_textview_topicTips">振って話題を出そう！</string>
+    <string name="htp_textview_shakeTips">振ると話題をスキップできるよ！</string>
     <string name="htp_textview_talkTips">出された話題について話そう！</string>
     <string name="htp_imageview_imageDesc">使い方説明の画像</string>
     <string name="title_textview_start">はじめる</string>
